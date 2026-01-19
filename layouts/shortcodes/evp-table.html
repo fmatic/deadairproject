@@ -1,0 +1,20 @@
+<table class="evp-table">
+<thead>
+<tr><th>Time</th><th>Type</th><th>Description</th><th>Source</th></tr>
+</thead>
+<tbody id="evp-table-body"></tbody>
+</table>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const body = document.getElementById("evp-table-body");
+  (window.evpTable || []).forEach(e => {
+    body.innerHTML += `<tr>
+      <td>${e.time}</td>
+      <td>${e.type}</td>
+      <td>${e.label}</td>
+      <td>${e.player}</td>
+    </tr>`;
+  });
+});
+</script>

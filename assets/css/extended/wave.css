@@ -1,0 +1,79 @@
+.wave-player {
+  background: #111;
+  border: 1px solid #222;
+  padding: 6px;
+  margin-bottom: 4px;
+}
+
+button {
+  background: #222;
+  color: #bbb;
+  border: 1px solid #333;
+  margin-right: 4px;
+  cursor: pointer;
+}
+
+.wave-wrapper {
+  margin: 1.5em 0;
+}
+
+.wave-player {
+  position: relative;
+  background: #111;
+  border: 1px solid #222;
+  padding: 6px;
+}
+
+.wave-marker {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #c55;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.wave-marker:hover {
+  background: #ff8080;
+}
+
+.wave-controls button {
+  background: #222;
+  color: #bbb;
+  border: 1px solid #333;
+  margin-right: 6px;
+  cursor: pointer;
+}
+
+.marker-list {
+  margin-top: 8px;
+  padding-left: 0;
+  list-style: none;
+  font-size: 0.9em;
+}
+
+.marker-list li {
+  cursor: pointer;
+  padding: 2px 0;
+}
+
+.marker-list li span {
+  color: #999;
+  font-family: monospace;
+}
+
+.wave-marker.whisper { background:#d9b65c }
+.wave-marker.response { background:#c55 }
+.wave-marker.noise { background:#666 }
+
+.evp-table {
+  width:100%;
+  border-collapse:collapse;
+  margin-top:1em;
+}
+.evp-table th, .evp-table td {
+  border:1px solid #333;
+  padding:4px 6px;
+}
+.evp-table th { background:#111 }

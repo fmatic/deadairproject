@@ -1,0 +1,43 @@
+baseURL = "https://deadairproject.online/"
+title = "Dead Air Project"
+theme = "PaperMod"
+languageCode = "en"
+defaultContentLanguage = "en"
+
+enableRobotsTXT = true
+buildDrafts = false
+
+[params]
+  env = "production"
+  description = "Ghostbox recordings, EVP sessions and anomalous audio archives."
+  author = "Dead Air Project"
+
+  defaultTheme = "dark"
+  disableThemeToggle = true
+
+  ShowReadingTime = false
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+
+  ShowToc = false
+
+  # Tämä tekee sivusta arkistomaisemman
+  ShowWordCount = false
+
+[menu]
+  [[menu.main]]
+    name = "Sessions"
+    url = "/posts/"
+    weight = 1
+
+  [[menu.main]]
+    name = "Archive"
+    url = "/archives/"
+    weight = 2
+
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 3

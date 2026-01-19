@@ -1,0 +1,79 @@
+<div class="wave-wrapper">
+  <div class="wave-title">{{ .Get "title" }}</div>
+
+  <div class="wave-player" id="wave-{{ .Get "id" }}"></div>
+
+  <div class="wave-controls">
+    <button onclick="ws_{{ .Get "id" }}.playPause()">▶︎ / ❚❚</button>
+    <button onclick="setLoopA_{{ .Get "id" }}()">A</button>
+    <button onclick="setLoopB_{{ .Get "id" }}()">B</button>
+    <button onclick="clearLoop_{{ .Get "id" }}()">Clear</button>
+  </div>
+
+  <ul class="marker-list" id="markers-{{ .Get "id" }}"></ul>
+</div>
+
+<script>
+const ws_{{ .Get "id" }} = WaveSurfer.create({
+  container: '#wave-{{ .Get "id" }}',
+  waveColor: '#333',
+  progressColor: '#bbb',
+  cursorColor: '#666',
+  height: 90,
+  normalize: true
+});
+
+ws_{{ .Get "id" }}.load('{{ .Get "src" }}');
+
+const markers_{{ .Get "id" }} = {{ .Get "markers" | safeJS }};
+let loopA_{{ .Get "id" }} = null;
+let loopB_{{ .Get "id" }} = null;
+
+/* LOOP */
+function setLoopA_{{ .Get "id" }}() { loopA_{{ .Get "id" }} = ws_{{ .Get "id" }}.getCurrentTime(); }
+function setLoopB_{{ .Get "id" }}() { loopB_{{ .Get "id" }} = ws_{{ .Get "id" }}.getCurrentTime(); }
+function clearLoop_{{ .Get "id" }}() { loopA_{{ .Get "id" }} = loopB_{{ .Get "id" }} = null; }
+
+ws_{{ .Get "id" }}.on('audioprocess', () => {
+  if (loopA_{{ .Get "id" }} && loopB_{{ .Get "id" }} &&
+      ws_{{ .Get "id" }}.getCurrentTime() >= loopB_{{ .Get "id" }}) {
+    ws_{{ .Get "id" }}.setTime(loopA_{{ .Get "id" }});
+  }
+});
+
+/* MARKERS + TABLE DATA */
+window.evpTable = window.evpTable || [];
+
+ws_{{ .Get "id" }}.on('ready', () => {
+  const duration = ws_{{ .Get "id" }}.getDuration();
+  const list = document.getElementById('markers-{{ .Get "id" }}');
+
+  markers_{{ .Get "id" }}.forEach(m => {
+    const marker = document.createElement('div');
+    marker.className = `wave-marker ${m.type}`;
+    marker.style.left = (m.time / duration * 100) + '%';
+    marker.title = m.label;
+    marker.onclick = () => ws_{{ .Get "id" }}.setTime(m.time);
+    document.getElementById('wave-{{ .Get "id" }}').appendChild(marker);
+
+    const li = document.createElement('li');
+    li.innerHTML = `<span>${fmt(m.time)}</span> [${m.type}] — ${m.label}`;
+    li.onclick = () => ws_{{ .Get "id" }}.setTime(m.time);
+    list.appendChild(li);
+
+    window.evpTable.push({
+      time: fmt(m.time),
+      type: m.type,
+      label: m.label,
+      player: "{{ .Get "title" }}"
+    });
+  });
+
+  /* Deep link */
+  const urlT = new URLSearchParams(window.location.search).get("t");
+  if (urlT) ws_{{ .Get "id" }}.setTime(parseTime(urlT));
+});
+
+function fmt(s){return `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`}
+function parseTime(t){const p=t.split(":");return (+p[0]*60)+(+p[1])}
+</script>
