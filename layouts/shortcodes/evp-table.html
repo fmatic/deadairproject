@@ -1,6 +1,14 @@
+<button onclick="downloadEVP()">Download CSV</button>
+
 <table class="evp-table">
 <thead>
-<tr><th>Time</th><th>Type</th><th>Description</th><th>Source</th></tr>
+<tr>
+  <th>Time</th>
+  <th>Type</th>
+  <th>Confidence</th>
+  <th>Description</th>
+  <th>Source</th>
+</tr>
 </thead>
 <tbody id="evp-table-body"></tbody>
 </table>
@@ -12,9 +20,23 @@ document.addEventListener("DOMContentLoaded", () => {
     body.innerHTML += `<tr>
       <td>${e.time}</td>
       <td>${e.type}</td>
+      <td>${e.confidence}</td>
       <td>${e.label}</td>
       <td>${e.player}</td>
     </tr>`;
   });
 });
+
+function downloadEVP() {
+  let csv = "time,type,confidence,description,source\n";
+  (window.evpTable || []).forEach(e => {
+    csv += `${e.time},${e.type},${e.confidence},"${e.label}",${e.player}\n`;
+  });
+
+  const blob = new Blob([csv], { type: "text/csv" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "evp-summary.csv";
+  a.click();
+}
 </script>
