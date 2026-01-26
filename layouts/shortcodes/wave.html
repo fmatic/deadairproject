@@ -10,6 +10,15 @@
     <button onclick="clearLoop_{{ .Get "id" }}()">Clear</button>
   </div>
 
+window.evpTable.push({
+  time: fmt(m.time),
+  type: m.type,
+  confidence: m.confidence || "low",
+  label: m.label,
+  player: "{{ .Get "title" }}"
+});
+
+
   <ul class="marker-list" id="markers-{{ .Get "id" }}"></ul>
 </div>
 
@@ -50,24 +59,53 @@ ws_{{ .Get "id" }}.on('ready', () => {
 
   markers_{{ .Get "id" }}.forEach(m => {
     const marker = document.createElement('div');
-    marker.className = `wave-marker ${m.type}`;
+    marker.classNamemarker.className = `wave-marker ${m.type} conf-${m.confidence || "low"}`;
     marker.style.left = (m.time / duration * 100) + '%';
     marker.title = m.label;
     marker.onclick = () => ws_{{ .Get "id" }}.setTime(m.time);
     document.getElementById('wave-{{ .Get "id" }}').appendChild(marker);
 
     const li = document.createElement('li');
-    li.innerHTML = `<span>${fmt(m.time)}</span> [${m.type}] — ${m.label}`;
+    li.innerHTML = `<span>${fmt(m.time)}</span> [${m.type} / ${m.confidence || "low"}] — ${m.label}`;
     li.onclick = () => ws_{{ .Get "id" }}.setTime(m.time);
     list.appendChild(li);
 
-    window.evpTable.push({
-      time: fmt(m.time),
-      type: m.type,
-      label: m.label,
-      player: "{{ .Get "title" }}"
+window.evpTable.push({
+  time: fmt(m.time),
+  type: m.type,
+  confidence: m.confidence || "low",
+  label: m.label,
+  player: "{{ .Get "title" }}"
+});
+
+window.waveGroups = window.waveGroups || {};
+const group = "{{ .Get "group" }}";
+
+if (group) {
+  window.waveGroups[group] = window.waveGroups[group] || [];
+  window.waveGroups[group].push(ws_{{ .Get "id" }});
+
+  ws_{{ .Get "id" }}.on('seek', p => {
+    window.waveGroups[group].forEach(w => {
+      if (w !== ws_{{ .Get "id" }}) {
+        w.setTime(p * w.getDuration());
+      }
     });
   });
+
+  ws_{{ .Get "id" }}.on('play', () => {
+    window.waveGroups[group].forEach(w => {
+      if (w !== ws_{{ .Get "id" }}) w.play();
+    });
+  });
+
+  ws_{{ .Get "id" }}.on('pause', () => {
+    window.waveGroups[group].forEach(w => {
+      if (w !== ws_{{ .Get "id" }}) w.pause();
+    });
+  });
+}
+
 
   /* Deep link */
   const urlT = new URLSearchParams(window.location.search).get("t");
@@ -77,3 +115,4 @@ ws_{{ .Get "id" }}.on('ready', () => {
 function fmt(s){return `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`}
 function parseTime(t){const p=t.split(":");return (+p[0]*60)+(+p[1])}
 </script>
+
