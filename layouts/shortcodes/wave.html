@@ -8,21 +8,21 @@
     <button onclick="setLoopA_{{ .Get "id" }}()">A</button>
     <button onclick="setLoopB_{{ .Get "id" }}()">B</button>
     <button onclick="clearLoop_{{ .Get "id" }}()">Clear</button>
+
+    <label style="font-size:0.8em; margin-left:10px;">
+      Zoom
+      <input type="range" min="1" max="200" value="1"
+        oninput="ws_{{ .Get "id" }}.zoom(Number(this.value))">
+    </label>
   </div>
-
-window.evpTable.push({
-  time: fmt(m.time),
-  type: m.type,
-  confidence: m.confidence || "low",
-  label: m.label,
-  player: "{{ .Get "title" }}"
-});
-
 
   <ul class="marker-list" id="markers-{{ .Get "id" }}"></ul>
 </div>
 
 <script>
+window.evpTable = window.evpTable || [];
+window.waveGroups = window.waveGroups || {};
+
 const ws_{{ .Get "id" }} = WaveSurfer.create({
   container: '#wave-{{ .Get "id" }}',
   waveColor: '#333',
@@ -35,31 +35,29 @@ const ws_{{ .Get "id" }} = WaveSurfer.create({
 ws_{{ .Get "id" }}.load('{{ .Get "src" }}');
 
 const markers_{{ .Get "id" }} = {{ .Get "markers" | safeJS }};
-let loopA_{{ .Get "id" }} = null;
-let loopB_{{ .Get "id" }} = null;
+let loopA = null;
+let loopB = null;
 
 /* LOOP */
-function setLoopA_{{ .Get "id" }}() { loopA_{{ .Get "id" }} = ws_{{ .Get "id" }}.getCurrentTime(); }
-function setLoopB_{{ .Get "id" }}() { loopB_{{ .Get "id" }} = ws_{{ .Get "id" }}.getCurrentTime(); }
-function clearLoop_{{ .Get "id" }}() { loopA_{{ .Get "id" }} = loopB_{{ .Get "id" }} = null; }
+function setLoopA_{{ .Get "id" }}() { loopA = ws_{{ .Get "id" }}.getCurrentTime(); }
+function setLoopB_{{ .Get "id" }}() { loopB = ws_{{ .Get "id" }}.getCurrentTime(); }
+function clearLoop_{{ .Get "id" }}() { loopA = loopB = null; }
 
 ws_{{ .Get "id" }}.on('audioprocess', () => {
-  if (loopA_{{ .Get "id" }} && loopB_{{ .Get "id" }} &&
-      ws_{{ .Get "id" }}.getCurrentTime() >= loopB_{{ .Get "id" }}) {
-    ws_{{ .Get "id" }}.setTime(loopA_{{ .Get "id" }});
+  if (loopA !== null && loopB !== null &&
+      ws_{{ .Get "id" }}.getCurrentTime() >= loopB) {
+    ws_{{ .Get "id" }}.setTime(loopA);
   }
 });
 
-/* MARKERS + TABLE DATA */
-window.evpTable = window.evpTable || [];
-
+/* MARKERS */
 ws_{{ .Get "id" }}.on('ready', () => {
   const duration = ws_{{ .Get "id" }}.getDuration();
   const list = document.getElementById('markers-{{ .Get "id" }}');
 
   markers_{{ .Get "id" }}.forEach(m => {
     const marker = document.createElement('div');
-    marker.classNamemarker.className = `wave-marker ${m.type} conf-${m.confidence || "low"}`;
+    marker.className = `wave-marker ${m.type} conf-${m.confidence || "low"}`;
     marker.style.left = (m.time / duration * 100) + '%';
     marker.title = m.label;
     marker.onclick = () => ws_{{ .Get "id" }}.setTime(m.time);
@@ -70,26 +68,28 @@ ws_{{ .Get "id" }}.on('ready', () => {
     li.onclick = () => ws_{{ .Get "id" }}.setTime(m.time);
     list.appendChild(li);
 
-window.evpTable.push({
-  time: fmt(m.time),
-  type: m.type,
-  confidence: m.confidence || "low",
-  label: m.label,
-  player: "{{ .Get "title" }}"
+    window.evpTable.push({
+      time: fmt(m.time),
+      type: m.type,
+      confidence: m.confidence || "low",
+      label: m.label,
+      player: "{{ .Get "title" }}"
+    });
+  });
+
+  const urlT = new URLSearchParams(window.location.search).get("t");
+  if (urlT) ws_{{ .Get "id" }}.setTime(parseTime(urlT));
 });
 
-window.waveGroups = window.waveGroups || {};
+/* SYNC GROUP */
 const group = "{{ .Get "group" }}";
-
 if (group) {
   window.waveGroups[group] = window.waveGroups[group] || [];
   window.waveGroups[group].push(ws_{{ .Get "id" }});
 
   ws_{{ .Get "id" }}.on('seek', p => {
     window.waveGroups[group].forEach(w => {
-      if (w !== ws_{{ .Get "id" }}) {
-        w.setTime(p * w.getDuration());
-      }
+      if (w !== ws_{{ .Get "id" }}) w.setTime(p * w.getDuration());
     });
   });
 
@@ -106,13 +106,6 @@ if (group) {
   });
 }
 
-
-  /* Deep link */
-  const urlT = new URLSearchParams(window.location.search).get("t");
-  if (urlT) ws_{{ .Get "id" }}.setTime(parseTime(urlT));
-});
-
 function fmt(s){return `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`}
 function parseTime(t){const p=t.split(":");return (+p[0]*60)+(+p[1])}
 </script>
-
