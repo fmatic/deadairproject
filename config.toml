@@ -41,3 +41,5 @@ buildDrafts = false
     name = "About"
     url = "/about/"
     weight = 3
+
+  mainSections = ["posts"]
