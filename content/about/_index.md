@@ -2,7 +2,7 @@
 title: "About"
 ---
 
-## About me
+
 
 My name is **Janne**.
 
