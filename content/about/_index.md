@@ -1,5 +1,5 @@
 ---
-title: "Abou 🧩"
+title: "About 🧩"
 ---
 
 
