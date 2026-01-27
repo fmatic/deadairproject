@@ -29,3 +29,16 @@ body.methodology blockquote {
   font-style: italic;
   opacity: 0.85;
 }
+
+/* Session page headings */
+.post-content h2 {
+  color: #c9d1d9;          /* hillitty vaalea */
+  border-bottom: 1px solid #30363d;
+  padding-bottom: 0.3rem;
+  margin-top: 3rem;
+}
+
+.post-content h3 {
+  color: #9da7b1;
+  margin-top: 2rem;
+}
