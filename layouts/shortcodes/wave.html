@@ -19,20 +19,6 @@
     <button onclick="setLoopA('{{ .Get "id" }}')">A</button>
     <button onclick="setLoopB('{{ .Get "id" }}')">B</button>
     <button onclick="clearLoop()">Clear</button>
-  </div>
-
-  <ul class="marker-list" id="markers-{{ .Get "id" }}"></ul>
-</div>
-<div class="wave-wrapper">
-  <div class="wave-title">{{ .Get "title" }}</div>
-
-  <div class="wave-player" id="wave-{{ .Get "id" }}"></div>
-
-  <div class="wave-controls">
-    <button onclick="wavePlay('{{ .Get "id" }}')">▶︎ / ❚❚</button>
-    <button onclick="setLoopA('{{ .Get "id" }}')">A</button>
-    <button onclick="setLoopB('{{ .Get "id" }}')">B</button>
-    <button onclick="clearLoop('{{ .Get "id" }}')">Clear</button>
 
     <label style="font-size:0.8em; margin-left:10px;">
       Zoom
@@ -77,6 +63,10 @@ const ws = WaveSurfer.create({
   ]
 });
 
+window.wavePlayers[waveId] = ws;
+ws.load('{{ .Get "src" }}');
+
+/* TIME DISPLAY */
 const timeEl = document.getElementById('time-' + waveId);
 const durEl  = document.getElementById('duration-' + waveId);
 
@@ -87,10 +77,6 @@ ws.on('ready', () => {
 ws.on('timeupdate', (t) => {
   timeEl.textContent = fmt(t);
 });
-
-
-window.wavePlayers[waveId] = ws;
-ws.load('{{ .Get "src" }}');
 
 /* CONTROLS */
 function wavePlay(id) {
