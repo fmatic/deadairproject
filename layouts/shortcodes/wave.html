@@ -60,10 +60,34 @@ const ws = WaveSurfer.create({
   container: '#wave-' + waveId,
   waveColor: '#333',
   progressColor: '#bbb',
-  cursorColor: '#666',
+  cursorColor: '#888',
   height: 90,
-  normalize: true
+  normalize: true,
+  plugins: [
+    WaveSurfer.Timeline.create({
+      container: '#timeline-' + waveId,
+      timeInterval: 1,
+      primaryLabelInterval: 10,
+      secondaryLabelInterval: 5,
+      style: {
+        fontSize: '11px',
+        color: '#9da7b1'
+      }
+    })
+  ]
 });
+
+const timeEl = document.getElementById('time-' + waveId);
+const durEl  = document.getElementById('duration-' + waveId);
+
+ws.on('ready', () => {
+  durEl.textContent = fmt(ws.getDuration());
+});
+
+ws.on('timeupdate', (t) => {
+  timeEl.textContent = fmt(t);
+});
+
 
 window.wavePlayers[waveId] = ws;
 ws.load('{{ .Get "src" }}');
