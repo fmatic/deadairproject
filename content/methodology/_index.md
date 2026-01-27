@@ -4,6 +4,17 @@ description: "Documentation-first approach for recording, reviewing, and archivi
 layout: "page"
 ---
 
+> ### TL;DR
+> Dead Air Project documents anomalous audio using a **documentation-first approach**.
+>  
+> - Raw audio is always preserved and presented first  
+> - Enhanced audio is provided only as a listening aid  
+> - EVP markers reflect **perceived sounds**, not conclusions  
+> - Confidence levels describe **clarity**, not origin  
+>  
+> Readers are encouraged to listen critically and draw their own conclusions.
+
+
 ## 🧪 Methodology
 
 ### Purpose
