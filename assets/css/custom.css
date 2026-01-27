@@ -1,0 +1,31 @@
+/* Methodology page styling */
+body.methodology .page-content {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+body.methodology h2 {
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+body.methodology h3 {
+  margin-top: 2rem;
+}
+
+body.methodology hr {
+  margin: 3rem 0;
+  opacity: 0.3;
+}
+
+body.methodology ul,
+body.methodology ol {
+  margin-left: 1.5rem;
+}
+
+body.methodology blockquote {
+  margin-top: 3rem;
+  font-style: italic;
+  opacity: 0.85;
+}
