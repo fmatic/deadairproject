@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     body.innerHTML += `<tr>
       <td>${e.time}</td>
       <td>${e.type}</td>
-      <td>${e.confidence}</td>
+      <td class="conf-${e.confidence}">${e.confidence}</td>
       <td>${e.label}</td>
       <td>${e.player}</td>
     </tr>`;
@@ -33,7 +33,7 @@ function downloadEVP() {
     csv += `${e.time},${e.type},${e.confidence},"${e.label}",${e.player}\n`;
   });
 
-  const blob = new Blob([csv], { type: "text/csv" });
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
   a.download = "evp-summary.csv";
