@@ -1,15 +1,10 @@
 ---
----
 title: "Methodology"
 layout: "page"
 draft: false
 toc: true
 hideMeta: true
 bodyClass: "methodology"
----
-
----
-
 ---
 
 ## Purpose
