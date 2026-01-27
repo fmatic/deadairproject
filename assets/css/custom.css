@@ -54,3 +54,36 @@ body.methodology blockquote {
   margin-top: 4px;
   margin-bottom: 8px;
 }
+
+/* Marker confidence colors */
+.wave-marker.conf-low {
+  background: #6b7280; /* gray */
+}
+
+.wave-marker.conf-medium {
+  background: #facc15; /* yellow */
+}
+
+.wave-marker.conf-high {
+  background: #22c55e; /* green */
+}
+
+/* Marker list bullets */
+.marker-list li {
+  cursor: pointer;
+}
+
+.marker-list li.conf-low::before {
+  content: "● ";
+  color: #6b7280;
+}
+
+.marker-list li.conf-medium::before {
+  content: "● ";
+  color: #facc15;
+}
+
+.marker-list li.conf-high::before {
+  content: "● ";
+  color: #22c55e;
+}
