@@ -103,4 +103,28 @@ ws.on('ready', () => {
 
 /* SYNC GROUP */
 if (group) {
-  window.waveGroups[group] = window.waveGroups[gro]()
+  window.waveGroups[group] = window.waveGroups[group] || [];
+  window.waveGroups[group].push(ws);
+
+  ws.on('seek', p => {
+    window.waveGroups[group].forEach(w => {
+      if (w !== ws) w.setTime(p * w.getDuration());
+    });
+  });
+
+  ws.on('play', () => {
+    window.waveGroups[group].forEach(w => {
+      if (w !== ws) w.play();
+    });
+  });
+
+  ws.on('pause', () => {
+    window.waveGroups[group].forEach(w => {
+      if (w !== ws) w.pause();
+    });
+  });
+}
+
+function fmt(s){return `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`}
+function parseTime(t){const p=t.split(":");return (+p[0]*60)+(+p[1])}
+</script>
