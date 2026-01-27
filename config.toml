@@ -20,6 +20,7 @@ buildDrafts = false
   ShowPostNavLinks = true
   ShowBreadCrumbs = true
   ShowCodeCopyButtons = true
+  showArchive: true
 
   ShowToc = false
 
