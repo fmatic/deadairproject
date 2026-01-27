@@ -1,5 +1,5 @@
 ---
-title: "Equipment Log"
+title: "Equipment Log 📻"
 ---
 
 ## Overview
