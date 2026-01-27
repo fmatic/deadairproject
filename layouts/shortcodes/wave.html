@@ -1,6 +1,31 @@
 <div class="wave-wrapper">
   <div class="wave-title">{{ .Get "title" }}</div>
 
+  <!-- Time display -->
+  <div class="wave-time">
+    <span id="time-{{ .Get "id" }}">0:00</span>
+    /
+    <span id="duration-{{ .Get "id" }}">0:00</span>
+  </div>
+
+  <!-- Waveform -->
+  <div class="wave-player" id="wave-{{ .Get "id" }}"></div>
+
+  <!-- Timeline -->
+  <div class="wave-timeline" id="timeline-{{ .Get "id" }}"></div>
+
+  <div class="wave-controls">
+    <button onclick="wavePlay('{{ .Get "id" }}')">▶︎ / ❚❚</button>
+    <button onclick="setLoopA('{{ .Get "id" }}')">A</button>
+    <button onclick="setLoopB('{{ .Get "id" }}')">B</button>
+    <button onclick="clearLoop()">Clear</button>
+  </div>
+
+  <ul class="marker-list" id="markers-{{ .Get "id" }}"></ul>
+</div>
+<div class="wave-wrapper">
+  <div class="wave-title">{{ .Get "title" }}</div>
+
   <div class="wave-player" id="wave-{{ .Get "id" }}"></div>
 
   <div class="wave-controls">
