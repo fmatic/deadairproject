@@ -25,6 +25,8 @@ buildDrafts = false
 
   # Tämä tekee sivusta arkistomaisemman
   ShowWordCount = false
+  customCSS = ["css/custom.css"]
+
 
 [menu]
   [[menu.main]]
