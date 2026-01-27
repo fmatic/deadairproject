@@ -87,3 +87,9 @@ body.methodology blockquote {
   content: "● ";
   color: #22c55e;
 }
+
+blockquote {
+  border-left: 3px solid #3b82f6;
+  background: rgba(59, 130, 246, 0.05);
+  padding: 1rem;
+}
