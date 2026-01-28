@@ -137,6 +137,21 @@ These limitations are documented openly and are considered part of the observati
 
 ---
 
+## How to listen 🎧
+
+When reviewing audio sessions, listeners are encouraged to follow these guidelines:
+
+- Always listen to the **raw recording first**
+- Use headphones in a quiet environment
+- Avoid reading marker descriptions before listening
+- Replay marked segments multiple times before forming an opinion
+- Compare raw and enhanced versions cautiously
+
+Perception varies greatly between listeners.  
+Hearing *something* does not imply meaning, intent, or source.
+
+---
+
 ## 🌐 Technical Note
 
 Audio files are hosted on a separate media domain.  
