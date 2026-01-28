@@ -93,3 +93,26 @@ blockquote {
   background: rgba(59, 130, 246, 0.05);
   padding: 1rem;
 }
+
+.session-summary {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  border-left: 3px solid #3b82f6;
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+}
+
+.session-summary ul {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.session-summary li {
+  margin-bottom: 0.4rem;
+}
+
+.session-summary .summary-note {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  margin-top: 0.5rem;
+}
