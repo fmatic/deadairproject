@@ -70,6 +70,11 @@ Processing may include:
 
 Raw audio is always preserved and prioritized.
 
+### Windows-based tools
+
+ - **SonicVisualiser** Mainly for large EVP-session analyzation
+ - **Audacity**
+
 ---
 
 ## Session references
