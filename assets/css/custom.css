@@ -94,21 +94,7 @@ blockquote {
   padding: 1rem;
 }
 
-.session-summary {
-  font-size: 0.85rem;
-  line-height: 1.45;
-  opacity: 0.9;
-    border: 1px solid rgba(255,255,255,0.08);
-  border-left: 3px solid #3b82f6;
-
-  border-radius: 6px;
-  padding: 0.9rem 1.1rem;
-  margin: 1.5rem 0 2rem 0;
-
-  background: rgba(255,255,255,0.02);
-}
-
-.session-summary strong {
+.post-content .session-summary strong {
   display: block;
   font-size: 0.8rem;
   letter-spacing: 0.05em;
@@ -118,17 +104,30 @@ blockquote {
 }
 
 
-.session-summary ul {
+.post-content .session-summary strong {
+  display: block;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0.8;
+  margin-bottom: 0.5rem;
+}
+
+
+
+.post-content .session-summary ul {
   margin: 0.4rem 0 0.6rem 1.1rem;
 }
 
-.session-summary li {
+.post-content .session-summary li {
   margin-bottom: 0.3rem;
 }
 
-.session-summary .summary-note {
+
+.post-content .session-summary .summary-note {
   font-size: 0.75rem;
   opacity: 0.6;
   margin-top: 0.6rem;
 }
+
 
