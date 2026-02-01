@@ -33,7 +33,8 @@
 <script>
 window.wavePlayers = window.wavePlayers || {};
 window.waveGroups  = window.waveGroups  || {};
-window.evpTable    = window.evpTable    || {};
+window.evpTable = window.evpTable || [];
+
 
 const waveId = "{{ .Get "id" }}";
 const group  = "{{ .Get "group" }}";
@@ -100,13 +101,15 @@ function clearLoop(id) {
   window.waveLoops[id].A = null;
   window.waveLoops[id].B = null;
 }
+
 ws.on('audioprocess', () => {
-  if (loopA !== null && loopB !== null &&
-      ws.getCurrentTime() >= loopB) {
-    ws.setTime(loopA);
+  const loop = window.waveLoops[waveId];
+  if (loop.A !== null && loop.B !== null &&
+      ws.getCurrentTime() >= loop.B) {
+    ws.setTime(loop.A);
   }
 });
-});
+
 
 /* MARKERS */
 ws.on('ready', () => {
