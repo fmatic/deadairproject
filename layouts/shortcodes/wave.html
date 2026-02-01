@@ -31,141 +31,150 @@
 </div>
 
 <script>
-window.wavePlayers = window.wavePlayers || {};
-window.waveGroups  = window.waveGroups  || {};
-window.evpTable = window.evpTable || [];
+(function () {
 
+  window.wavePlayers = window.wavePlayers || {};
+  window.waveGroups  = window.waveGroups  || {};
+  window.evpTable    = window.evpTable    || [];
 
-const waveId = "{{ .Get "id" }}";
-const group  = "{{ .Get "group" }}";
-const markers = {{ .Get "markers" | safeJS }};
+  const waveId = "{{ .Get "id" }}";
+  const group  = "{{ .Get "group" }}";
+  const markers = {{ .Get "markers" | safeJS }};
 
-window.waveLoops = window.waveLoops || {};
-window.waveLoops[waveId] = { A: null, B: null };
+  window.waveLoops = window.waveLoops || {};
+  window.waveLoops[waveId] = { A: null, B: null };
 
-const ws = WaveSurfer.create({
-  container: '#wave-' + waveId,
-    backend: 'MediaElement',      // 🔑 TÄMÄ RIVI
-  mediaControls: false,         // (valinnainen mutta suositeltu)
-  waveColor: '#333',
-  progressColor: '#bbb',
-  cursorColor: '#888',
-  height: 90,
-  normalize: true,
-  plugins: [
-    WaveSurfer.Timeline.create({
-      container: '#timeline-' + waveId,
-      timeInterval: 1,
-      primaryLabelInterval: 10,
-      secondaryLabelInterval: 5,
-      style: {
-        fontSize: '11px',
-        color: '#9da7b1'
-      }
-    })
-  ]
-});
+  const ws = WaveSurfer.create({
+    container: '#wave-' + waveId,
+    backend: 'MediaElement',
+    mediaControls: false,
+    waveColor: '#333',
+    progressColor: '#bbb',
+    cursorColor: '#888',
+    height: 90,
+    normalize: true,
+    plugins: [
+      WaveSurfer.Timeline.create({
+        container: '#timeline-' + waveId,
+        timeInterval: 1,
+        primaryLabelInterval: 10,
+        secondaryLabelInterval: 5,
+        style: {
+          fontSize: '11px',
+          color: '#9da7b1'
+        }
+      })
+    ]
+  });
 
-window.wavePlayers[waveId] = ws;
-ws.load('{{ .Get "src" }}');
+  window.wavePlayers[waveId] = ws;
+  ws.load('{{ .Get "src" }}');
 
-/* TIME DISPLAY */
-const timeEl = document.getElementById('time-' + waveId);
-const durEl  = document.getElementById('duration-' + waveId);
+  /* TIME DISPLAY */
+  const timeEl = document.getElementById('time-' + waveId);
+  const durEl  = document.getElementById('duration-' + waveId);
 
-ws.on('ready', () => {
-  durEl.textContent = fmt(ws.getDuration());
-});
+  ws.on('ready', () => {
+    durEl.textContent = fmt(ws.getDuration());
+  });
 
-ws.on('timeupdate', (t) => {
-  timeEl.textContent = fmt(t);
-});
+  ws.on('timeupdate', (t) => {
+    timeEl.textContent = fmt(t);
+  });
 
-/* CONTROLS */
-function wavePlay(id) {
-  window.wavePlayers[id].playPause();
-}
+  /* CONTROLS */
+  window.wavePlay = function(id) {
+    window.wavePlayers[id].playPause();
+  };
 
-function waveZoom(id, z) {
-  window.wavePlayers[id].zoom(z);
-}
+  window.waveZoom = function(id, z) {
+    window.wavePlayers[id].zoom(z);
+  };
 
-/* LOOP */
-function setLoopA(id) {
-  window.waveLoops[id].A = window.wavePlayers[id].getCurrentTime();
-}
-function setLoopB(id) {
-  window.waveLoops[id].B = window.wavePlayers[id].getCurrentTime();
-}
-function clearLoop(id) {
-  window.waveLoops[id].A = null;
-  window.waveLoops[id].B = null;
-}
+  window.setLoopA = function(id) {
+    window.waveLoops[id].A = window.wavePlayers[id].getCurrentTime();
+  };
 
-ws.on('audioprocess', () => {
-  const loop = window.waveLoops[waveId];
-  if (loop.A !== null && loop.B !== null &&
-      ws.getCurrentTime() >= loop.B) {
-    ws.setTime(loop.A);
+  window.setLoopB = function(id) {
+    window.waveLoops[id].B = window.wavePlayers[id].getCurrentTime();
+  };
+
+  window.clearLoop = function(id) {
+    window.waveLoops[id].A = null;
+    window.waveLoops[id].B = null;
+  };
+
+  ws.on('audioprocess', () => {
+    const loop = window.waveLoops[waveId];
+    if (loop.A !== null && loop.B !== null &&
+        ws.getCurrentTime() >= loop.B) {
+      ws.setTime(loop.A);
+    }
+  });
+
+  /* MARKERS */
+  ws.on('ready', () => {
+    const duration = ws.getDuration();
+    const list = document.getElementById('markers-' + waveId);
+
+    markers.forEach(m => {
+      const marker = document.createElement('div');
+      marker.className = `wave-marker ${m.type} conf-${m.confidence || "low"}`;
+      marker.style.left = (m.time / duration * 100) + '%';
+      marker.title = m.label;
+      marker.onclick = () => ws.setTime(m.time);
+      document.getElementById('wave-' + waveId).appendChild(marker);
+
+      const li = document.createElement('li');
+      li.innerHTML = `<span>${fmt(m.time)}</span> [${m.type}/${m.confidence || "low"}] — ${m.label}`;
+      li.onclick = () => ws.setTime(m.time);
+      list.appendChild(li);
+
+      window.evpTable.push({
+        time: fmt(m.time),
+        type: m.type,
+        confidence: m.confidence || "low",
+        label: m.label,
+        player: "{{ .Get "title" }}"
+      });
+    });
+
+    const urlT = new URLSearchParams(window.location.search).get("t");
+    if (urlT) ws.setTime(parseTime(urlT));
+  });
+
+  /* SYNC GROUP */
+  if (group) {
+    window.waveGroups[group] = window.waveGroups[group] || [];
+    window.waveGroups[group].push(ws);
+
+    ws.on('seek', p => {
+      window.waveGroups[group].forEach(w => {
+        if (w !== ws) w.setTime(p * w.getDuration());
+      });
+    });
+
+    ws.on('play', () => {
+      window.waveGroups[group].forEach(w => {
+        if (w !== ws) w.play();
+      });
+    });
+
+    ws.on('pause', () => {
+      window.waveGroups[group].forEach(w => {
+        if (w !== ws) w.pause();
+      });
+    });
   }
-});
 
+  function fmt(s){
+    return `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`;
+  }
+  function parseTime(t){
+    const p=t.split(":");
+    return (+p[0]*60)+(+p[1]);
+  }
 
-/* MARKERS */
-ws.on('ready', () => {
-  const duration = ws.getDuration();
-  const list = document.getElementById('markers-' + waveId);
-
-  markers.forEach(m => {
-    const marker = document.createElement('div');
-    marker.className = `wave-marker ${m.type} conf-${m.confidence || "low"}`;
-    marker.style.left = (m.time / duration * 100) + '%';
-    marker.title = m.label;
-    marker.onclick = () => ws.setTime(m.time);
-    document.getElementById('wave-' + waveId).appendChild(marker);
-
-    const li = document.createElement('li');
-    li.innerHTML = `<span>${fmt(m.time)}</span> [${m.type}/${m.confidence || "low"}] — ${m.label}`;
-    li.onclick = () => ws.setTime(m.time);
-    list.appendChild(li);
-
-    window.evpTable.push({
-      time: fmt(m.time),
-      type: m.type,
-      confidence: m.confidence || "low",
-      label: m.label,
-      player: "{{ .Get "title" }}"
-    });
-  });
-
-  const urlT = new URLSearchParams(window.location.search).get("t");
-  if (urlT) ws.setTime(parseTime(urlT));
-});
-
-/* SYNC GROUP */
-if (group) {
-  window.waveGroups[group] = window.waveGroups[group] || [];
-  window.waveGroups[group].push(ws);
-
-  ws.on('seek', p => {
-    window.waveGroups[group].forEach(w => {
-      if (w !== ws) w.setTime(p * w.getDuration());
-    });
-  });
-
-  ws.on('play', () => {
-    window.waveGroups[group].forEach(w => {
-      if (w !== ws) w.play();
-    });
-  });
-
-  ws.on('pause', () => {
-    window.waveGroups[group].forEach(w => {
-      if (w !== ws) w.pause();
-    });
-  });
-}
-
-function fmt(s){return `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`}
-function parseTime(t){const p=t.split(":");return (+p[0]*60)+(+p[1])}
+})();
 </script>
+
