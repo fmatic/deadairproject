@@ -94,23 +94,21 @@ blockquote {
   padding: 1rem;
 }
 
-.post-content .session-summary {
+.session-summary {
   font-size: 0.85rem;
   line-height: 1.45;
-  opacity: 0.95;
-
-  border: 1px solid rgba(255,255,255,0.08);
+  opacity: 0.9;
+    border: 1px solid rgba(255,255,255,0.08);
   border-left: 3px solid #3b82f6;
-  border-radius: 6px;
 
+  border-radius: 6px;
   padding: 0.9rem 1.1rem;
   margin: 1.5rem 0 2rem 0;
 
   background: rgba(255,255,255,0.02);
 }
 
-
-.post-content .session-summary strong {
+.session-summary strong {
   display: block;
   font-size: 0.8rem;
   letter-spacing: 0.05em;
@@ -119,41 +117,18 @@ blockquote {
   margin-bottom: 0.5rem;
 }
 
-.post-content .session-summary ul {
+
+.session-summary ul {
   margin: 0.4rem 0 0.6rem 1.1rem;
 }
 
-.post-content .session-summary li {
+.session-summary li {
   margin-bottom: 0.3rem;
 }
 
-
-.post-content .session-summary .summary-note {
+.session-summary .summary-note {
   font-size: 0.75rem;
   opacity: 0.6;
   margin-top: 0.6rem;
 }
 
-
-.interpretation {
-  color: #9da7b1;
-  margin-top: 1em;
-  padding-left: 0.75em;
-  border-left: 2px solid rgba(157, 167, 177, 0.3);
-}
-
-.interpretation p {
-  font-size: 0.75em;
-  margin: 0;          /* estää turhan ison rivivälin */
-  line-height: 1.4;
-}
-
-.interpretation::before {
-  content: "👂 Listener note";
-  display: block;
-  font-size: 0.7em;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  opacity: 0.6;
-  margin-bottom: 0.25em;
-}
