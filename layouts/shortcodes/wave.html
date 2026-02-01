@@ -44,6 +44,8 @@ let loopB = null;
 
 const ws = WaveSurfer.create({
   container: '#wave-' + waveId,
+    backend: 'MediaElement',      // 🔑 TÄMÄ RIVI
+  mediaControls: false,         // (valinnainen mutta suositeltu)
   waveColor: '#333',
   progressColor: '#bbb',
   cursorColor: '#888',
