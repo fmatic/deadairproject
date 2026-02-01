@@ -136,9 +136,24 @@ blockquote {
 
 
 .interpretation {
-  font-size: 0.85em;
   color: #9da7b1;
   margin-top: 1em;
   padding-left: 0.75em;
   border-left: 2px solid rgba(157, 167, 177, 0.3);
+}
+
+.interpretation p {
+  font-size: 0.75em;
+  margin: 0;          /* estää turhan ison rivivälin */
+  line-height: 1.4;
+}
+
+.interpretation::before {
+  content: "👂 Listener note";
+  display: block;
+  font-size: 0.7em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.6;
+  margin-bottom: 0.25em;
 }
