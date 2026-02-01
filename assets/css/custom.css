@@ -131,25 +131,25 @@ blockquote {
 }
 
 
-.interpretation {
+.post-content .interpretation {
+  font-size: 0.75rem;
+  line-height: 1.45;
   color: #9da7b1;
-  margin-top: 1em;
-  padding-left: 0.75em;
+
+  margin-top: 1rem;
+  padding-left: 0.75rem;
+
   border-left: 2px solid rgba(157, 167, 177, 0.3);
 }
 
-.interpretation p {
-  font-size: 0.75em;
-  margin: 0;          /* estää turhan ison rivivälin */
-  line-height: 1.4;
-}
-
-.interpretation::before {
+.post-content .interpretation::before {
   content: "👂 Listener note";
   display: block;
-  font-size: 0.7em;
-  text-transform: uppercase;
+
+  font-size: 0.7rem;
   letter-spacing: 0.05em;
+  text-transform: uppercase;
+
   opacity: 0.6;
-  margin-bottom: 0.25em;
+  margin-bottom: 0.25rem;
 }
