@@ -18,7 +18,7 @@
     <button onclick="wavePlay('{{ .Get "id" }}')">▶︎ / ❚❚</button>
     <button onclick="setLoopA('{{ .Get "id" }}')">A</button>
     <button onclick="setLoopB('{{ .Get "id" }}')">B</button>
-    <button onclick="clearLoop()">Clear</button>
+    <button onclick="clearLoop('{{ .Get "id" }}')">Clear</button>
 
     <label style="font-size:0.8em; margin-left:10px;">
       Zoom
@@ -33,14 +33,14 @@
 <script>
 window.wavePlayers = window.wavePlayers || {};
 window.waveGroups  = window.waveGroups  || {};
-window.evpTable    = window.evpTable    || [];
+window.evpTable    = window.evpTable    || {};
 
 const waveId = "{{ .Get "id" }}";
 const group  = "{{ .Get "group" }}";
 const markers = {{ .Get "markers" | safeJS }};
 
-let loopA = null;
-let loopB = null;
+window.waveLoops = window.waveLoops || {};
+window.waveLoops[waveId] = { A: null, B: null };
 
 const ws = WaveSurfer.create({
   container: '#wave-' + waveId,
@@ -91,20 +91,21 @@ function waveZoom(id, z) {
 
 /* LOOP */
 function setLoopA(id) {
-  loopA = window.wavePlayers[id].getCurrentTime();
+  window.waveLoops[id].A = window.wavePlayers[id].getCurrentTime();
 }
 function setLoopB(id) {
-  loopB = window.wavePlayers[id].getCurrentTime();
+  window.waveLoops[id].B = window.wavePlayers[id].getCurrentTime();
 }
-function clearLoop() {
-  loopA = loopB = null;
+function clearLoop(id) {
+  window.waveLoops[id].A = null;
+  window.waveLoops[id].B = null;
 }
-
 ws.on('audioprocess', () => {
   if (loopA !== null && loopB !== null &&
       ws.getCurrentTime() >= loopB) {
     ws.setTime(loopA);
   }
+});
 });
 
 /* MARKERS */
