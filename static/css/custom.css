@@ -146,7 +146,7 @@ blockquote {
 }
 
 .post-content .interpretation::before {
-  content: "👂 Listener note";
+  content: "🎧Researcher's observation";
   display: block;
   font-size: 0.65rem;
   letter-spacing: 0.06em;
