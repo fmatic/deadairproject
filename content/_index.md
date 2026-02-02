@@ -28,7 +28,7 @@ No claims are made — only recordings are presented.
 
 ---
 
-→ [Browse the full session archive](/archive/)
+→ [Browse the full session archive](/posts/)
 
 ---
 
