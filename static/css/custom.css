@@ -132,25 +132,25 @@ blockquote {
   margin-top: 0.6rem;
 }
 
-.post-content .interpretation {
+.post-content .interpretation,
+.post-content .interpretation * {
   font-size: 0.75rem;
-  line-height: 1.45;
+  line-height: 1.4;
   color: #9da7b1;
+}
 
+.post-content .interpretation {
   margin-top: 1rem;
   padding-left: 0.75rem;
-
   border-left: 2px solid rgba(157, 167, 177, 0.3);
 }
 
 .post-content .interpretation::before {
   content: "👂 Listener note";
   display: block;
-
-  font-size: 0.7rem;
-  letter-spacing: 0.05em;
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-
   opacity: 0.6;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.3rem;
 }
