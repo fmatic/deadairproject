@@ -43,13 +43,19 @@ Equipment is listed as used — not as endorsement or proof.
 
 ## Measurement equipment
 
-### EMF Smart Sensor Meter
+### ST1393 EMF Smart Sensor Meter
 - Function: electromagnetic field measurement
 - Usage:
   - environmental reference
   - anomaly correlation
 - Notes:
   - readings logged but not interpreted as causal
+- Dual Testing Functions (detect and measure the  electric field radiation and magnetic field emission)
+- Range: 20Hz~300Hz magnetic field and 20Hz~3500MHz electric field
+- Temperature Measurement
+- Audible and Visual Dual Alarm
+
+
 
 ---
 
