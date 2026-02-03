@@ -39,6 +39,13 @@ Equipment is listed as used — not as endorsement or proof.
   - internal microphone
   - minimal onboard processing
 
+### Tascam DR-05
+- Function: digital voice recorder
+- Usage: EVP-focused recordings
+- Notes:
+  - Omni-directional condenser microphones
+  - sensitivity up to 125dB SPL
+
 ---
 
 ## Measurement equipment
