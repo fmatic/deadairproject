@@ -48,6 +48,39 @@ Equipment is listed as used — not as endorsement or proof.
 
 ---
 
+## External Speakers
+
+### JBL Micro Wireless
+- Old-fashioned, flat and narrow sound profile
+- Limited frequency response (no deep bass, no sparkle)
+- Bad for music playback
+- Excellent for Ghost Box / Spirit Box use
+- Speech and noise artifacts come through clearly
+- Small, simple, no sound “enhancement” or processing
+- Does not mask EVP-type anomalies
+- Powered speaker – practical for field use
+
+## Procaster OZC-01
+- Flat, uncolored and slightly muffled sound
+- Very limited frequency response
+- Not too much audio processing, quite heavy bass
+- Well-suited for Ghost Box / Spirit Box output
+- Speech fragments and noise artifacts stand out clearly
+- Minimal sound processing or enhancement
+- Does not smooth or mask potential EVP content
+- Simple, utilitarian speaker behavior benefits analysis
+
+## JBL Go (1st. Generation)
+- Boxy, sharp-edged and mid-focused sound profile
+- Narrow bandwidth with almost no low-end
+- Highly effective for Ghost Box / Spirit Box use
+- Digital noise, syllables and transient sounds are clearly exposed
+- Early-generation design with minimal DSP influence
+- Does not beautify or compress audio artifacts
+- Compact and practical external speaker for field work
+
+---
+
 ## Measurement equipment
 
 ### ST1393 EMF Smart Sensor Meter
