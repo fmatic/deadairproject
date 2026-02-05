@@ -13,9 +13,10 @@ Equipment is listed as used — not as endorsement or proof.
 
 ## Recording devices
 
-### ITC Research P-SB7 Spirit Box
+### ITC Research P-SB7 Spirit Box (Rev. 7)
 - Function: radio sweep / ITC
 - Usage: selective sessions
+- Sweep Rates: 50ms, 100ms, 150ms, 200ms, 250ms, 300ms, 350ms
 - Notes:
   - Sweep rate unchanged during sessions
   - Audio captured externally when possible
