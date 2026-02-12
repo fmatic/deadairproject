@@ -1,11 +1,13 @@
 ---
-title: "Session: {{ .Date.Format "02.01.2006" }}"
-date: {{ .Date }}
+title: "Session: {{ now.Format "02.01.2006" }}"
+date: {{ now }}
 tags: ["ghostbox"]
-location: 
-device: 
+location:
+device:
 noise_level: low
 draft: true
+---
+
 ---
 
 {{< session-summary >}}
