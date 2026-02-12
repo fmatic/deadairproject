@@ -8,8 +8,6 @@ noise_level: low
 draft: true
 ---
 
----
-
 {{< session-summary >}}
 - Question:
 - Response:
@@ -28,8 +26,8 @@ draft: true
 ### Audio
 
 {{< wave
-  id="s{{ .Date.Format "02012006" }}-raw"
-  group="s{{ .Date.Format "02012006" }}"
+  id="s{{ now.Format "02012006" }}-raw"
+  group="s{{ now.Format "02012006" }}"
   title="Raw"
   src=""
   markers=`[]`
@@ -50,3 +48,4 @@ draft: true
 **English**
 
 -
+
