@@ -83,9 +83,17 @@
   });
 
   /* CONTROLS */
-  window.wavePlay = function(id) {
-    window.wavePlayers[id].playPause();
-  };
+ window.wavePlay = function(id) {
+  const player = window.wavePlayers[id];
+  if (!player) return;
+
+  if (player.isPlaying()) {
+    player.pause();
+  } else {
+    player.play();
+  }
+};
+
 
   window.waveZoom = function(id, z) {
     window.wavePlayers[id].zoom(z);
