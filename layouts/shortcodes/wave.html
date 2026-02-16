@@ -46,7 +46,7 @@
 
   const ws = WaveSurfer.create({
     container: '#wave-' + waveId,
-    
+    backend: 'MediaElement',
     mediaControls: false,
     waveColor: '#333',
     progressColor: '#bbb',
@@ -83,9 +83,15 @@
   });
 
   /* CONTROLS */
- window.wavePlay = function(id) {
+window.wavePlay = async function(id) {
   const player = window.wavePlayers[id];
   if (!player) return;
+
+  // 🔑 Pakotetaan AudioContext heräämään
+  const ctx = player.backend?.ac || player.backend?.audioContext;
+  if (ctx && ctx.state === 'suspended') {
+    await ctx.resume();
+  }
 
   if (player.isPlaying()) {
     player.pause();
