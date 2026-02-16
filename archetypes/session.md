@@ -25,19 +25,19 @@ draft: true
 
 ### Audio
 
-#### Sample 1
+#### 🔎
 {{< wave id="sample-01" group="sample-01" title="Sample 1 – Raw" src="" markers=`[]` >}}
 
-#### Sample 2
+#### 🔎
 {{< wave id="sample-02" group="sample-02" title="Sample 2 – Raw" src="" markers=`[]` >}}
 
-#### Sample 3
+#### 🔎
 {{< wave id="sample-03" group="sample-03" title="Sample 3 – Raw" src="" markers=`[]` >}}
 
-#### Sample 4
+#### 🔎
 {{< wave id="sample-04" group="sample-04" title="Sample 4 – Raw" src="" markers=`[]` >}}
 
-#### Sample 5
+#### 🔎
 {{< wave id="sample-05" group="sample-05" title="Sample 5 – Raw" src="" markers=`[]` >}}
 
 > **Note:**  
