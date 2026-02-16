@@ -31,7 +31,9 @@ draft: true
   group="s{{ now.Format "02012006" }}-01"
   title="Sample 1 – Raw"
   src=""
-  markers=`[]`
+   markers=`[
+   { "time": 4, "label": "clear spoken answer", "type": "response", "confidence": "high" }
+ ]`
 >}}
 
 #### Sample 2
@@ -40,7 +42,9 @@ draft: true
   group="s{{ now.Format "02012006" }}-02"
   title="Sample 2 – Raw"
   src=""
-  markers=`[]`
+   markers=`[
+   { "time": 4, "label": "clear spoken answer", "type": "response", "confidence": "high" }
+ ]`
 >}}
 
 #### Sample 3
@@ -49,7 +53,9 @@ draft: true
   group="s{{ now.Format "02012006" }}-03"
   title="Sample 3 – Raw"
   src=""
-  markers=`[]`
+   markers=`[
+   { "time": 4, "label": "clear spoken answer", "type": "response", "confidence": "high" }
+ ]`
 >}}
 
 #### Sample 4
@@ -58,7 +64,9 @@ draft: true
   group="s{{ now.Format "02012006" }}-04"
   title="Sample 4 – Raw"
   src=""
-  markers=`[]`
+   markers=`[
+   { "time": 4, "label": "clear spoken answer", "type": "response", "confidence": "high" }
+ ]`
 >}}
 
 #### Sample 5
@@ -67,7 +75,9 @@ draft: true
   group="s{{ now.Format "02012006" }}-05"
   title="Sample 5 – Raw"
   src=""
-  markers=`[]`
+   markers=`[
+   { "time": 4, "label": "clear spoken answer", "type": "response", "confidence": "high" }
+ ]`
 >}}
 
 > **Note:**  
