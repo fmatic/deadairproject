@@ -23,8 +23,6 @@ draft: true
 
 ---
 
----
-
 ### Audio
 
 #### Sample 1
