@@ -99,7 +99,7 @@ Equipment is listed as used — not as endorsement or proof.
 - Notes:
   - readings logged but not interpreted as causal
 - Dual Testing Functions (detect and measure the  electric field radiation and magnetic field emission)
-- Range: 20Hz~300Hz magnetic field and 20Hz~3500MHz electric field
+- Range: 20Hz-300Hz magnetic field and 20Hz-3500MHz electric field
 - Temperature Measurement
 - Audible and Visual Dual Alarm
 
