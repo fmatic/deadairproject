@@ -104,7 +104,7 @@ Equipment is listed as used — not as endorsement or proof.
 - Audible and Visual Dual Alarm
 
 ### MelMeter 8704-r
-- State if art EMF sensor
+- State of art EMF sensor
 - Usage:
      - enviromental reference
      - anomaly correlcation
