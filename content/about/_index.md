@@ -45,16 +45,19 @@ No hidden processing, no sensational enhancement.
 - **ITC Research P-SB7 Spirit Box** (ghostbox / radio sweep)
 - **Røde VideoMic Me-L** (iPhone recordings)
 - **iPhone Voice Memos** (raw session capture)
+- **iPhone Just Press Record** (raw session capture)
 - **Olympus VN-8000PC** digital voice recorder (EVP recordings)
 
 ### Measurement
 - **EMF Smart Sensor Meter** (electromagnetic field monitoring)
+- **MelMeter 8704-r** (State of art EMF meter)
 
 ### Audio analysis & processing (iPad)
 - **WavePad**
 - **Ferrite**
 - **TwistedWave**
 - **Brusfri** (noise reduction, reference only)
+- **Psoft Audio Player** (amazing player for alalysing)
 
 Enhanced audio versions are provided **only as listening aids**.  
 No content is added — processing may introduce artefacts.
