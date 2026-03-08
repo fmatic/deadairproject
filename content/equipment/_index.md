@@ -33,6 +33,13 @@ Equipment is listed as used — not as endorsement or proof.
 - Format: uncompressed / default app settings
 - Role: primary capture device in some sessions
 
+### iPhone (Just Press Record)
+- Fuction: raw session recording
+- Format: default settings
+- Role: Primary Capture device
+
+### 
+
 ### Olympus VN-8000PC
 - Function: digital voice recorder
 - Usage: EVP-focused recordings
@@ -96,6 +103,19 @@ Equipment is listed as used — not as endorsement or proof.
 - Temperature Measurement
 - Audible and Visual Dual Alarm
 
+### MelMeter 8704-r
+- State if art EMF sensor
+- Usage:
+     - enviromental reference
+     - anomaly correlcation
+- Measures EMF, & ambient Temperature
+- EMF "Burst" (100msec) mode feature for rapid EMF fluctuation
+- EMF Min/Max capture
+- Rapid response ambient temperature measurement
+- Temperature min/max capture
+- Red night view Backlight Display with On/Off Button
+- High intensity Red Flashlight
+
 
 
 ---
@@ -108,6 +128,7 @@ All processing is performed **after recording**, never live.
 - **WavePad**
 - **Ferrite**
 - **TwistedWave**
+- **Wavebox Audio Editor**
 - **Brusfri**
 
 Processing may include:
@@ -116,6 +137,9 @@ Processing may include:
 - noise reduction (reference only)
 
 Raw audio is always preserved and prioritized.
+
+### iPhone-based tools
+- **Psoft Audio Player**
 
 ### Windows-based tools
 
