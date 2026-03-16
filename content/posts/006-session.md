@@ -33,7 +33,7 @@ Teksti
 #### 🔎
 {{< wave id="sample-02" group="sample-02" title="Sample 2 – Raw" src="https://media.deadairproject.online/sessions/14062026/Veera_moikka.mp3" markers=`[{ "time": 4, "label": "clear spoken answer", "type": "response", "confidence": "high" }]` >}}
 {{< interpretation >}}
-Teksti
+Teksti:
 {{< /interpretation >}}
 #### 🔎
 
