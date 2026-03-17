@@ -58,5 +58,5 @@ draft: true
 ### Feedback ✉️
 
 Comments? Or Have you recorded something similar?<br>
-Send EVP or GhostBox recordings to:<br>
+Send your toughts, EVP or GhostBox recordings to:<br>
 evidence@deadairproject.online<br>
