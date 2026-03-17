@@ -161,3 +161,25 @@ blockquote {
   );
 }
 
+.submit-evidence-box {
+  margin-top: 2rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #444;
+}
+
+.submit-evidence-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.submit-evidence-text {
+  font-size: 0.85rem;
+  color: #bdbdbd;
+  margin: 0.2rem 0;
+}
+
+.submit-evidence-mail {
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+}
