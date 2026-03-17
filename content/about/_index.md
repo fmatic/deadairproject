@@ -4,7 +4,7 @@ title: "About 🧩"
 
 
 
-My name is **Janne**.
+My name is **Janne**. (janne@deadairproject.online)
 
 I was born in 1975 and live in Central Finland.  
 By profession, I work as a **practical nurse**, primarily in elderly care.
@@ -82,3 +82,11 @@ Enhanced versions are clearly labeled and optional.
 > *Dead air is never truly silent —  
 > but silence does not owe us explanations.*
 
+
+Deadairproject is an independent EVP and ghostbox research project.
+
+Contact:
+hello@deadairproject.online
+
+Research submissions:
+evidence@deadairproject.online
