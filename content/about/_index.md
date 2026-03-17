@@ -82,6 +82,7 @@ Enhanced versions are clearly labeled and optional.
 > *Dead air is never truly silent —  
 > but silence does not owe us explanations.*
 
+---
 
 Deadairproject is an independent EVP and ghostbox research project.
 
