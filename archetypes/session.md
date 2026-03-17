@@ -55,9 +55,4 @@ draft: true
 
 -
 
-### Feedback ✉️
 
-Comments? Or Have you recorded something similar?<br>
-Send your toughts about our recordings, or submit your<br>
-EVP or GhostBox recordings to:<br>
-evidence@deadairproject.online<br>
