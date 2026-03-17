@@ -47,12 +47,14 @@ draft: true
 
 ### Session Report
 
-**Finnish**
+### Session Report
 
-- 
+- Session Atmosphere: The atmosphere during the session was extremely intense. Both participants experienced physical sensations, including chills and a strong feeling of being watched.
+- Responses: The investigation produced several clear and intelligent responses.
+- Intelligence Test: Evidence of an intelligent presence was suggested during a simple counting test. When the sequence “1, 2” was spoken aloud, the response “3” was clearly received.
+- Identification: When asked for a name, a clear name was received.
+- Interaction: We were also greeted during the session. Some responses appeared to directly address the questions asked.
+- Researcher’s Observation: Some responses appear contextually relevant, though further analysis is always recommended.
 
-**English**
-
--
 
 
