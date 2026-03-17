@@ -19,7 +19,7 @@ draft: true
 - **Location:**  
 - **Device:**  
 - **Method:** GhostBox  
-- **Notes:**  
+- **Atmosphere:**  
 
 ---
 
