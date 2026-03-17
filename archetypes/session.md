@@ -47,8 +47,6 @@ draft: true
 
 ### Session Report
 
-### Session Report
-
 - Session Atmosphere: The atmosphere during the session was extremely intense. Both participants experienced physical sensations, including chills and a strong feeling of being watched.
 - Responses: The investigation produced several clear and intelligent responses.
 - Intelligence Test: Evidence of an intelligent presence was suggested during a simple counting test. When the sequence “1, 2” was spoken aloud, the response “3” was clearly received.
