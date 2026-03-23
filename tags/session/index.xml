@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Session on Dead Air Project</title><link>https://deadairproject.online/tags/session/</link><description>Recent content in Session on Dead Air Project</description><generator>Hugo -- 0.154.3</generator><language>en</language><lastBuildDate>Tue, 27 Jan 2026 02:52:05 +0200</lastBuildDate><atom:link href="https://deadairproject.online/tags/session/index.xml" rel="self" type="application/rss+xml"/><item><title>Session: 15.01.2026</title><link>https://deadairproject.online/posts/002-15012026/</link><pubDate>Tue, 27 Jan 2026 02:52:05 +0200</pubDate><guid>https://deadairproject.online/posts/002-15012026/</guid><description>&lt;div class="session-summary"&gt;
+&lt;strong&gt;TL;DR — Session Summary&lt;/strong&gt;
+&lt;ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Vihamielinen ja negatiivinen ilmapiiri. Useatr vastaukset olivat aggressivisella sävyllä ja ne olivat osoitettu yhdelle naispuoliselle tutkimukseen osallistuneelle.&lt;/li&gt;
+&lt;li&gt;Negative and hostile atmosphere. Several responses carried a clearly aggressive tone, appearing to be directed toward the female participant in the session.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/ul&gt;
+&lt;p class="summary-note"&gt;
+This summary describes observed audio events only.
+Interpretation is left to the listener.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;h3 id="session-details"&gt;Session details&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Location:&lt;/strong&gt;&lt;br&gt;
+Paperitehtaankatu 1, Jyväskylä, Finland&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Device:&lt;/strong&gt;&lt;br&gt;
+SpiritStore - SpiritBox&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Method:&lt;/strong&gt;&lt;br&gt;
+GhostBox&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Atmosphere:&lt;/strong&gt; The atmosphere during the session was particularly charged. Some responses were hostile and even dismissive. A number of these hostile replies appeared to be directed specifically toward one of the female participants.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="audio-sample-i"&gt;Audio Sample I&lt;/h3&gt;
+&lt;p&gt;&lt;div class="wave-wrapper"&gt;
+&lt;div class="wave-title"&gt;Raw&lt;/div&gt;
+&lt;div class="wave-time"&gt;
+&lt;span id="time-s001-raw"&gt;0:00&lt;/span&gt;
+/
+&lt;span id="duration-s001-raw"&gt;0:00&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="wave-player" id="wave-s001-raw"&gt;&lt;/div&gt;
+&lt;div class="wave-timeline" id="timeline-s001-raw"&gt;&lt;/div&gt;
+&lt;div class="wave-controls"&gt;
+&lt;button onclick="wavePlay('s001-raw')"&gt;▶︎ / ❚❚&lt;/button&gt;
+&lt;button onclick="setLoopA('s001-raw')"&gt;A&lt;/button&gt;
+&lt;button onclick="setLoopB('s001-raw')"&gt;B&lt;/button&gt;
+&lt;button onclick="clearLoop('s001-raw')"&gt;Clear&lt;/button&gt;
+&lt;label style="font-size:0.8em; margin-left:10px;"&gt;
+Zoom
+&lt;input type="range" min="1" max="200" value="1"
+oninput="waveZoom('s001-raw', Number(this.value))"&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;ul class="marker-list" id="markers-s001-raw"&gt;&lt;/ul&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function () {
+window.wavePlayers = window.wavePlayers || {};
+window.waveGroups = window.waveGroups || {};
+window.evpTable = window.evpTable || [];
+const waveId = "s001-raw";
+const group = "s001";
+const markers = [{"time":4,"label":"clear spoken answer","type":"response","confidence":"high"}];
+window.waveLoops = window.waveLoops || {};
+window.waveLoops[waveId] = { A: null, B: null };
+const ws = WaveSurfer.create({
+container: '#wave-' + waveId,
+backend: 'MediaElement',
+mediaControls: false,
+waveColor: '#333',
+progressColor: '#bbb',
+cursorColor: '#888',
+height: 90,
+normalize: true,
+plugins: [
+WaveSurfer.Timeline.create({
+container: '#timeline-' + waveId,
+timeInterval: 1,
+primaryLabelInterval: 10,
+secondaryLabelInterval: 5,
+style: {
+fontSize: '11px',
+color: '#9da7b1'
+}
+})
+]
+});
+window.wavePlayers[waveId] = ws;
+ws.load('https:\/\/media.deadairproject.online\/sessions\/session-001\/raw.mp3');
+const timeEl = document.getElementById('time-' + waveId);
+const durEl = document.getElementById('duration-' + waveId);
+ws.on('ready', () =&gt; {
+durEl.textContent = fmt(ws.getDuration());
+});
+ws.on('timeupdate', (t) =&gt; {
+timeEl.textContent = fmt(t);
+});
+window.wavePlay = async function(id) {
+const player = window.wavePlayers[id];
+if (!player) return;
+const ctx = player.backend?.ac || player.backend?.audioContext;
+if (ctx &amp;&amp; ctx.state === 'suspended') {
+await ctx.resume();
+}
+if (player.isPlaying()) {
+player.pause();
+} else {
+player.play();
+}
+};
+window.waveZoom = function(id, z) {
+window.wavePlayers[id].zoom(z);
+};
+window.setLoopA = function(id) {
+window.waveLoops[id].A = window.wavePlayers[id].getCurrentTime();
+};
+window.setLoopB = function(id) {
+window.waveLoops[id].B = window.wavePlayers[id].getCurrentTime();
+};
+window.clearLoop = function(id) {
+window.waveLoops[id].A = null;
+window.waveLoops[id].B = null;
+};
+ws.on('audioprocess', () =&gt; {
+const loop = window.waveLoops[waveId];
+if (loop.A !== null &amp;&amp; loop.B !== null &amp;&amp;
+ws.getCurrentTime() &gt;= loop.B) {
+ws.setTime(loop.A);
+}
+});
+ws.on('ready', () =&gt; {
+const duration = ws.getDuration();
+const list = document.getElementById('markers-' + waveId);
+markers.forEach(m =&gt; {
+const marker = document.createElement('div');
+marker.className = `wave-marker ${m.type} conf-${m.confidence || "low"}`;
+marker.style.left = (m.time / duration * 100) + '%';
+marker.title = m.label;
+marker.onclick = () =&gt; ws.setTime(m.time);
+document.getElementById('wave-' + waveId).appendChild(marker);
+const li = document.createElement('li');
+li.innerHTML = `&lt;span&gt;${fmt(m.time)}&lt;/span&gt; [${m.type}/${m.confidence || "low"}] — ${m.label}`;
+li.onclick = () =&gt; ws.setTime(m.time);
+list.appendChild(li);
+window.evpTable.push({
+time: fmt(m.time),
+type: m.type,
+confidence: m.confidence || "low",
+label: m.label,
+player: "Raw"
+});
+});
+const urlT = new URLSearchParams(window.location.search).get("t");
+if (urlT) ws.setTime(parseTime(urlT));
+});
+if (group) {
+window.waveGroups[group] = window.waveGroups[group] || [];
+window.waveGroups[group].push(ws);
+ws.on('seek', p =&gt; {
+window.waveGroups[group].forEach(w =&gt; {
+if (w !== ws) {
+w.setTime(p * w.getDuration());
+}
+});
+});
+}
+function fmt(s){
+return `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`;
+}
+function parseTime(t){
+const p=t.split(":");
+return (+p[0]*60)+(+p[1]);
+}
+})();
+&lt;/script&gt;
+&lt;div class="interpretation"&gt;
+K: Ootko naisvihaaja? &lt;br&gt;
+V: Oon!&lt;br&gt;
+&lt;/div&gt;
+&lt;/p&gt;</description></item></channel></rss>

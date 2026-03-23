@@ -1,0 +1,1232 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Posts on Dead Air Project</title><link>https://deadairproject.online/posts/</link><description>Recent content in Posts on Dead Air Project</description><generator>Hugo -- 0.154.3</generator><language>en</language><lastBuildDate>Sun, 22 Mar 2026 02:52:05 +0200</lastBuildDate><atom:link href="https://deadairproject.online/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Session: 22.03.2026</title><link>https://deadairproject.online/posts/010-22032026/</link><pubDate>Sun, 22 Mar 2026 02:52:05 +0200</pubDate><guid>https://deadairproject.online/posts/010-22032026/</guid><description>&lt;div class="session-summary"&gt;
+&lt;strong&gt;TL;DR — Session Summary&lt;/strong&gt;
+&lt;ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Rauhallinen ilmapiiri. Vastaukset maltillisia, mutta selkeitä.&lt;/li&gt;
+&lt;li&gt;Calm atmosphere. Responses were moderate in tone, yet clear.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/ul&gt;
+&lt;p class="summary-note"&gt;
+This summary describes observed audio events only.
+Interpretation is left to the listener.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h3 id="session-details"&gt;Session details&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Location:&lt;/strong&gt; Kangaslampi, Jyväskylä&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Device:&lt;/strong&gt; ITC P-SB7&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Method:&lt;/strong&gt; GhostBox&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Atmosphere:&lt;/strong&gt; Calm&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id="audio"&gt;Audio&lt;/h3&gt;
+&lt;h4 id="heading"&gt;🔎&lt;/h4&gt;
+&lt;p&gt;&lt;div class="wave-wrapper"&gt;
+&lt;div class="wave-title"&gt;Sample 1 – Raw&lt;/div&gt;
+&lt;div class="wave-time"&gt;
+&lt;span id="time-sample-01"&gt;0:00&lt;/span&gt;
+/
+&lt;span id="duration-sample-01"&gt;0:00&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="wave-player" id="wave-sample-01"&gt;&lt;/div&gt;
+&lt;div class="wave-timeline" id="timeline-sample-01"&gt;&lt;/div&gt;
+&lt;div class="wave-controls"&gt;
+&lt;button onclick="wavePlay('sample-01')"&gt;▶︎ / ❚❚&lt;/button&gt;
+&lt;button onclick="setLoopA('sample-01')"&gt;A&lt;/button&gt;
+&lt;button onclick="setLoopB('sample-01')"&gt;B&lt;/button&gt;
+&lt;button onclick="clearLoop('sample-01')"&gt;Clear&lt;/button&gt;
+&lt;label style="font-size:0.8em; margin-left:10px;"&gt;
+Zoom
+&lt;input type="range" min="1" max="200" value="1"
+oninput="waveZoom('sample-01', Number(this.value))"&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;ul class="marker-list" id="markers-sample-01"&gt;&lt;/ul&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function () {
+window.wavePlayers = window.wavePlayers || {};
+window.waveGroups = window.waveGroups || {};
+window.evpTable = window.evpTable || [];
+const waveId = "sample-01";
+const group = "sample-01";
+const markers = [{ "time": 9, "label": "clear spoken answer", "type": "response", "confidence": "high" }];
+window.waveLoops = window.waveLoops || {};
+window.waveLoops[waveId] = { A: null, B: null };
+const ws = WaveSurfer.create({
+container: '#wave-' + waveId,
+backend: 'MediaElement',
+mediaControls: false,
+waveColor: '#333',
+progressColor: '#bbb',
+cursorColor: '#888',
+height: 90,
+normalize: true,
+plugins: [
+WaveSurfer.Timeline.create({
+container: '#timeline-' + waveId,
+timeInterval: 1,
+primaryLabelInterval: 10,
+secondaryLabelInterval: 5,
+style: {
+fontSize: '11px',
+color: '#9da7b1'
+}
+})
+]
+});
+window.wavePlayers[waveId] = ws;
+ws.load('https:\/\/media.deadairproject.online\/sessions\/22_03_2026\/EnUskalla.mp3');
+const timeEl = document.getElementById('time-' + waveId);
+const durEl = document.getElementById('duration-' + waveId);
+ws.on('ready', () =&gt; {
+durEl.textContent = fmt(ws.getDuration());
+});
+ws.on('timeupdate', (t) =&gt; {
+timeEl.textContent = fmt(t);
+});
+window.wavePlay = async function(id) {
+const player = window.wavePlayers[id];
+if (!player) return;
+const ctx = player.backend?.ac || player.backend?.audioContext;
+if (ctx &amp;&amp; ctx.state === 'suspended') {
+await ctx.resume();
+}
+if (player.isPlaying()) {
+player.pause();
+} else {
+player.play();
+}
+};
+window.waveZoom = function(id, z) {
+window.wavePlayers[id].zoom(z);
+};
+window.setLoopA = function(id) {
+window.waveLoops[id].A = window.wavePlayers[id].getCurrentTime();
+};
+window.setLoopB = function(id) {
+window.waveLoops[id].B = window.wavePlayers[id].getCurrentTime();
+};
+window.clearLoop = function(id) {
+window.waveLoops[id].A = null;
+window.waveLoops[id].B = null;
+};
+ws.on('audioprocess', () =&gt; {
+const loop = window.waveLoops[waveId];
+if (loop.A !== null &amp;&amp; loop.B !== null &amp;&amp;
+ws.getCurrentTime() &gt;= loop.B) {
+ws.setTime(loop.A);
+}
+});
+ws.on('ready', () =&gt; {
+const duration = ws.getDuration();
+const list = document.getElementById('markers-' + waveId);
+markers.forEach(m =&gt; {
+const marker = document.createElement('div');
+marker.className = `wave-marker ${m.type} conf-${m.confidence || "low"}`;
+marker.style.left = (m.time / duration * 100) + '%';
+marker.title = m.label;
+marker.onclick = () =&gt; ws.setTime(m.time);
+document.getElementById('wave-' + waveId).appendChild(marker);
+const li = document.createElement('li');
+li.innerHTML = `&lt;span&gt;${fmt(m.time)}&lt;/span&gt; [${m.type}/${m.confidence || "low"}] — ${m.label}`;
+li.onclick = () =&gt; ws.setTime(m.time);
+list.appendChild(li);
+window.evpTable.push({
+time: fmt(m.time),
+type: m.type,
+confidence: m.confidence || "low",
+label: m.label,
+player: "Sample 1 – Raw"
+});
+});
+const urlT = new URLSearchParams(window.location.search).get("t");
+if (urlT) ws.setTime(parseTime(urlT));
+});
+if (group) {
+window.waveGroups[group] = window.waveGroups[group] || [];
+window.waveGroups[group].push(ws);
+ws.on('seek', p =&gt; {
+window.waveGroups[group].forEach(w =&gt; {
+if (w !== ws) {
+w.setTime(p * w.getDuration());
+}
+});
+});
+}
+function fmt(s){
+return `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`;
+}
+function parseTime(t){
+const p=t.split(":");
+return (+p[0]*60)+(+p[1]);
+}
+})();
+&lt;/script&gt;
+&lt;div class="interpretation"&gt;
+K: Kerro oma nimesi&lt;br&gt;
+V: En uskalla&lt;br&gt;
+&lt;/div&gt;
+&lt;/p&gt;</description></item><item><title>Session: 17.03.2026</title><link>https://deadairproject.online/posts/009-17032026/</link><pubDate>Thu, 19 Mar 2026 02:52:05 +0200</pubDate><guid>https://deadairproject.online/posts/009-17032026/</guid><description>&lt;div class="session-summary"&gt;
+&lt;strong&gt;TL;DR — Session Summary&lt;/strong&gt;
+&lt;ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Intensiivinen sessio, mutta tunnelma rauhallinen. Vastauksia tuli poikkeuksellisen paljon ja ne olivat paikoitellen selkeitä ja johdonmukaisia.&lt;/li&gt;
+&lt;li&gt;The session was intense, but the atmosphere remained calm. An unusually high number of responses were recorded, with some appearing clear and consistent.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/ul&gt;
+&lt;p class="summary-note"&gt;
+This summary describes observed audio events only.
+Interpretation is left to the listener.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h3 id="session-details"&gt;Session details&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Location:&lt;/strong&gt; Kangas, Jyväskylä&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Device:&lt;/strong&gt; ITC P-SB7&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Method:&lt;/strong&gt; GhostBox&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Atmosphere:&lt;/strong&gt; Very calm&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id="audio"&gt;Audio&lt;/h3&gt;
+&lt;h4 id="heading"&gt;🔎&lt;/h4&gt;
+&lt;p&gt;&lt;div class="wave-wrapper"&gt;
+&lt;div class="wave-title"&gt;Sample 1 – Raw&lt;/div&gt;
+&lt;div class="wave-time"&gt;
+&lt;span id="time-sample-01"&gt;0:00&lt;/span&gt;
+/
+&lt;span id="duration-sample-01"&gt;0:00&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="wave-player" id="wave-sample-01"&gt;&lt;/div&gt;
+&lt;div class="wave-timeline" id="timeline-sample-01"&gt;&lt;/div&gt;
+&lt;div class="wave-controls"&gt;
+&lt;button onclick="wavePlay('sample-01')"&gt;▶︎ / ❚❚&lt;/button&gt;
+&lt;button onclick="setLoopA('sample-01')"&gt;A&lt;/button&gt;
+&lt;button onclick="setLoopB('sample-01')"&gt;B&lt;/button&gt;
+&lt;button onclick="clearLoop('sample-01')"&gt;Clear&lt;/button&gt;
+&lt;label style="font-size:0.8em; margin-left:10px;"&gt;
+Zoom
+&lt;input type="range" min="1" max="200" value="1"
+oninput="waveZoom('sample-01', Number(this.value))"&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;ul class="marker-list" id="markers-sample-01"&gt;&lt;/ul&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function () {
+window.wavePlayers = window.wavePlayers || {};
+window.waveGroups = window.waveGroups || {};
+window.evpTable = window.evpTable || [];
+const waveId = "sample-01";
+const group = "sample-01";
+const markers = [{ "time": 7, "label": "clear spoken answer", "type": "response", "confidence": "high" }];
+window.waveLoops = window.waveLoops || {};
+window.waveLoops[waveId] = { A: null, B: null };
+const ws = WaveSurfer.create({
+container: '#wave-' + waveId,
+backend: 'MediaElement',
+mediaControls: false,
+waveColor: '#333',
+progressColor: '#bbb',
+cursorColor: '#888',
+height: 90,
+normalize: true,
+plugins: [
+WaveSurfer.Timeline.create({
+container: '#timeline-' + waveId,
+timeInterval: 1,
+primaryLabelInterval: 10,
+secondaryLabelInterval: 5,
+style: {
+fontSize: '11px',
+color: '#9da7b1'
+}
+})
+]
+});
+window.wavePlayers[waveId] = ws;
+ws.load('https:\/\/media.deadairproject.online\/sessions\/17_03_2026\/Kuka_muu.mp3');
+const timeEl = document.getElementById('time-' + waveId);
+const durEl = document.getElementById('duration-' + waveId);
+ws.on('ready', () =&gt; {
+durEl.textContent = fmt(ws.getDuration());
+});
+ws.on('timeupdate', (t) =&gt; {
+timeEl.textContent = fmt(t);
+});
+window.wavePlay = async function(id) {
+const player = window.wavePlayers[id];
+if (!player) return;
+const ctx = player.backend?.ac || player.backend?.audioContext;
+if (ctx &amp;&amp; ctx.state === 'suspended') {
+await ctx.resume();
+}
+if (player.isPlaying()) {
+player.pause();
+} else {
+player.play();
+}
+};
+window.waveZoom = function(id, z) {
+window.wavePlayers[id].zoom(z);
+};
+window.setLoopA = function(id) {
+window.waveLoops[id].A = window.wavePlayers[id].getCurrentTime();
+};
+window.setLoopB = function(id) {
+window.waveLoops[id].B = window.wavePlayers[id].getCurrentTime();
+};
+window.clearLoop = function(id) {
+window.waveLoops[id].A = null;
+window.waveLoops[id].B = null;
+};
+ws.on('audioprocess', () =&gt; {
+const loop = window.waveLoops[waveId];
+if (loop.A !== null &amp;&amp; loop.B !== null &amp;&amp;
+ws.getCurrentTime() &gt;= loop.B) {
+ws.setTime(loop.A);
+}
+});
+ws.on('ready', () =&gt; {
+const duration = ws.getDuration();
+const list = document.getElementById('markers-' + waveId);
+markers.forEach(m =&gt; {
+const marker = document.createElement('div');
+marker.className = `wave-marker ${m.type} conf-${m.confidence || "low"}`;
+marker.style.left = (m.time / duration * 100) + '%';
+marker.title = m.label;
+marker.onclick = () =&gt; ws.setTime(m.time);
+document.getElementById('wave-' + waveId).appendChild(marker);
+const li = document.createElement('li');
+li.innerHTML = `&lt;span&gt;${fmt(m.time)}&lt;/span&gt; [${m.type}/${m.confidence || "low"}] — ${m.label}`;
+li.onclick = () =&gt; ws.setTime(m.time);
+list.appendChild(li);
+window.evpTable.push({
+time: fmt(m.time),
+type: m.type,
+confidence: m.confidence || "low",
+label: m.label,
+player: "Sample 1 – Raw"
+});
+});
+const urlT = new URLSearchParams(window.location.search).get("t");
+if (urlT) ws.setTime(parseTime(urlT));
+});
+if (group) {
+window.waveGroups[group] = window.waveGroups[group] || [];
+window.waveGroups[group].push(ws);
+ws.on('seek', p =&gt; {
+window.waveGroups[group].forEach(w =&gt; {
+if (w !== ws) {
+w.setTime(p * w.getDuration());
+}
+});
+});
+}
+function fmt(s){
+return `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`;
+}
+function parseTime(t){
+const p=t.split(":");
+return (+p[0]*60)+(+p[1]);
+}
+})();
+&lt;/script&gt;
+&lt;div class="interpretation"&gt;
+K: Sit täällä on mukana yks uus tyyppi&lt;br&gt;
+V: Kuka muu&lt;br&gt;
+&lt;/div&gt;
+&lt;/p&gt;</description></item><item><title>Session: 19.02.2026</title><link>https://deadairproject.online/posts/008-19022026/</link><pubDate>Mon, 16 Mar 2026 02:52:05 +0200</pubDate><guid>https://deadairproject.online/posts/008-19022026/</guid><description>&lt;div class="session-summary"&gt;
+&lt;strong&gt;TL;DR — Session Summary&lt;/strong&gt;
+&lt;ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Tämän tutkimuksen suoritin yksin ja olen huomannut, että parhaimmat tulokset tulee yksin tehdessä.&lt;/li&gt;
+&lt;li&gt;This session was conducted alone. Based on previous experience, solo sessions often yield the most notable results. The session was initiated following a strong intuitive sense that it was the right time to proceed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/ul&gt;
+&lt;p class="summary-note"&gt;
+This summary describes observed audio events only.
+Interpretation is left to the listener.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h3 id="session-details"&gt;Session details&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Location:&lt;/strong&gt; Kangas, Jyväskylä&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Device:&lt;/strong&gt; ITC P-SB7&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Method:&lt;/strong&gt; GhostBox&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Atmosphere:&lt;/strong&gt; Intense, calm.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id="audio"&gt;Audio&lt;/h3&gt;
+&lt;h4 id="heading"&gt;🔎&lt;/h4&gt;
+&lt;p&gt;&lt;div class="wave-wrapper"&gt;
+&lt;div class="wave-title"&gt;Sample 1 – Raw&lt;/div&gt;
+&lt;div class="wave-time"&gt;
+&lt;span id="time-sample-01"&gt;0:00&lt;/span&gt;
+/
+&lt;span id="duration-sample-01"&gt;0:00&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="wave-player" id="wave-sample-01"&gt;&lt;/div&gt;
+&lt;div class="wave-timeline" id="timeline-sample-01"&gt;&lt;/div&gt;
+&lt;div class="wave-controls"&gt;
+&lt;button onclick="wavePlay('sample-01')"&gt;▶︎ / ❚❚&lt;/button&gt;
+&lt;button onclick="setLoopA('sample-01')"&gt;A&lt;/button&gt;
+&lt;button onclick="setLoopB('sample-01')"&gt;B&lt;/button&gt;
+&lt;button onclick="clearLoop('sample-01')"&gt;Clear&lt;/button&gt;
+&lt;label style="font-size:0.8em; margin-left:10px;"&gt;
+Zoom
+&lt;input type="range" min="1" max="200" value="1"
+oninput="waveZoom('sample-01', Number(this.value))"&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;ul class="marker-list" id="markers-sample-01"&gt;&lt;/ul&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function () {
+window.wavePlayers = window.wavePlayers || {};
+window.waveGroups = window.waveGroups || {};
+window.evpTable = window.evpTable || [];
+const waveId = "sample-01";
+const group = "sample-01";
+const markers = [{ "time": 4, "label": "clear spoken answer", "type": "response", "confidence": "high" }];
+window.waveLoops = window.waveLoops || {};
+window.waveLoops[waveId] = { A: null, B: null };
+const ws = WaveSurfer.create({
+container: '#wave-' + waveId,
+backend: 'MediaElement',
+mediaControls: false,
+waveColor: '#333',
+progressColor: '#bbb',
+cursorColor: '#888',
+height: 90,
+normalize: true,
+plugins: [
+WaveSurfer.Timeline.create({
+container: '#timeline-' + waveId,
+timeInterval: 1,
+primaryLabelInterval: 10,
+secondaryLabelInterval: 5,
+style: {
+fontSize: '11px',
+color: '#9da7b1'
+}
+})
+]
+});
+window.wavePlayers[waveId] = ws;
+ws.load('https:\/\/media.deadairproject.online\/sessions\/19022026\/Mitas_aija.mp3');
+const timeEl = document.getElementById('time-' + waveId);
+const durEl = document.getElementById('duration-' + waveId);
+ws.on('ready', () =&gt; {
+durEl.textContent = fmt(ws.getDuration());
+});
+ws.on('timeupdate', (t) =&gt; {
+timeEl.textContent = fmt(t);
+});
+window.wavePlay = async function(id) {
+const player = window.wavePlayers[id];
+if (!player) return;
+const ctx = player.backend?.ac || player.backend?.audioContext;
+if (ctx &amp;&amp; ctx.state === 'suspended') {
+await ctx.resume();
+}
+if (player.isPlaying()) {
+player.pause();
+} else {
+player.play();
+}
+};
+window.waveZoom = function(id, z) {
+window.wavePlayers[id].zoom(z);
+};
+window.setLoopA = function(id) {
+window.waveLoops[id].A = window.wavePlayers[id].getCurrentTime();
+};
+window.setLoopB = function(id) {
+window.waveLoops[id].B = window.wavePlayers[id].getCurrentTime();
+};
+window.clearLoop = function(id) {
+window.waveLoops[id].A = null;
+window.waveLoops[id].B = null;
+};
+ws.on('audioprocess', () =&gt; {
+const loop = window.waveLoops[waveId];
+if (loop.A !== null &amp;&amp; loop.B !== null &amp;&amp;
+ws.getCurrentTime() &gt;= loop.B) {
+ws.setTime(loop.A);
+}
+});
+ws.on('ready', () =&gt; {
+const duration = ws.getDuration();
+const list = document.getElementById('markers-' + waveId);
+markers.forEach(m =&gt; {
+const marker = document.createElement('div');
+marker.className = `wave-marker ${m.type} conf-${m.confidence || "low"}`;
+marker.style.left = (m.time / duration * 100) + '%';
+marker.title = m.label;
+marker.onclick = () =&gt; ws.setTime(m.time);
+document.getElementById('wave-' + waveId).appendChild(marker);
+const li = document.createElement('li');
+li.innerHTML = `&lt;span&gt;${fmt(m.time)}&lt;/span&gt; [${m.type}/${m.confidence || "low"}] — ${m.label}`;
+li.onclick = () =&gt; ws.setTime(m.time);
+list.appendChild(li);
+window.evpTable.push({
+time: fmt(m.time),
+type: m.type,
+confidence: m.confidence || "low",
+label: m.label,
+player: "Sample 1 – Raw"
+});
+});
+const urlT = new URLSearchParams(window.location.search).get("t");
+if (urlT) ws.setTime(parseTime(urlT));
+});
+if (group) {
+window.waveGroups[group] = window.waveGroups[group] || [];
+window.waveGroups[group].push(ws);
+ws.on('seek', p =&gt; {
+window.waveGroups[group].forEach(w =&gt; {
+if (w !== ws) {
+w.setTime(p * w.getDuration());
+}
+});
+});
+}
+function fmt(s){
+return `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`;
+}
+function parseTime(t){
+const p=t.split(":");
+return (+p[0]*60)+(+p[1]);
+}
+})();
+&lt;/script&gt;
+&lt;div class="interpretation"&gt;
+K: Terve&lt;br&gt;
+V: Mitäs äijä?&lt;br&gt;
+&lt;/div&gt;
+&lt;/p&gt;</description></item><item><title>Session: 18.02.2026</title><link>https://deadairproject.online/posts/007-18022026/</link><pubDate>Sun, 15 Mar 2026 02:52:05 +0200</pubDate><guid>https://deadairproject.online/posts/007-18022026/</guid><description>&lt;div class="session-summary"&gt;
+&lt;strong&gt;TL;DR — Session Summary&lt;/strong&gt;
+&lt;ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Tutkimustilanteessa EMF mittari reagoi runsaasti. Varmistettu, ettei kyseessä ole sähkölaitteen aiheuttamat lukemat. Mittari myös sammui lukuisia kertoja ilman syytä.&lt;/li&gt;
+&lt;li&gt;Frequent EMF meter activity was observed during the investigation. The readings were verified not to be caused by nearby electrical devices, and the meter powered off several times without an apparent reason.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/ul&gt;
+&lt;p class="summary-note"&gt;
+This summary describes observed audio events only.
+Interpretation is left to the listener.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;h3 id="session-details"&gt;Session details&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Location:&lt;/strong&gt; Kangas, Jyväskylä&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Device:&lt;/strong&gt; ITC P-SB7&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Method:&lt;/strong&gt; GhostBox&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Atmosphere:&lt;/strong&gt; Intensive&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id="audio"&gt;Audio&lt;/h3&gt;
+&lt;h4 id="heading"&gt;🔎&lt;/h4&gt;
+&lt;p&gt;&lt;div class="wave-wrapper"&gt;
+&lt;div class="wave-title"&gt;Sample 1 – Raw&lt;/div&gt;
+&lt;div class="wave-time"&gt;
+&lt;span id="time-sample-01"&gt;0:00&lt;/span&gt;
+/
+&lt;span id="duration-sample-01"&gt;0:00&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="wave-player" id="wave-sample-01"&gt;&lt;/div&gt;
+&lt;div class="wave-timeline" id="timeline-sample-01"&gt;&lt;/div&gt;
+&lt;div class="wave-controls"&gt;
+&lt;button onclick="wavePlay('sample-01')"&gt;▶︎ / ❚❚&lt;/button&gt;
+&lt;button onclick="setLoopA('sample-01')"&gt;A&lt;/button&gt;
+&lt;button onclick="setLoopB('sample-01')"&gt;B&lt;/button&gt;
+&lt;button onclick="clearLoop('sample-01')"&gt;Clear&lt;/button&gt;
+&lt;label style="font-size:0.8em; margin-left:10px;"&gt;
+Zoom
+&lt;input type="range" min="1" max="200" value="1"
+oninput="waveZoom('sample-01', Number(this.value))"&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;ul class="marker-list" id="markers-sample-01"&gt;&lt;/ul&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function () {
+window.wavePlayers = window.wavePlayers || {};
+window.waveGroups = window.waveGroups || {};
+window.evpTable = window.evpTable || [];
+const waveId = "sample-01";
+const group = "sample-01";
+const markers = [{ "time": 2, "label": "clear spoken answer", "type": "response", "confidence": "high" }];
+window.waveLoops = window.waveLoops || {};
+window.waveLoops[waveId] = { A: null, B: null };
+const ws = WaveSurfer.create({
+container: '#wave-' + waveId,
+backend: 'MediaElement',
+mediaControls: false,
+waveColor: '#333',
+progressColor: '#bbb',
+cursorColor: '#888',
+height: 90,
+normalize: true,
+plugins: [
+WaveSurfer.Timeline.create({
+container: '#timeline-' + waveId,
+timeInterval: 1,
+primaryLabelInterval: 10,
+secondaryLabelInterval: 5,
+style: {
+fontSize: '11px',
+color: '#9da7b1'
+}
+})
+]
+});
+window.wavePlayers[waveId] = ws;
+ws.load('https:\/\/media.deadairproject.online\/sessions\/18022026\/Mittari_Kylla.mp3');
+const timeEl = document.getElementById('time-' + waveId);
+const durEl = document.getElementById('duration-' + waveId);
+ws.on('ready', () =&gt; {
+durEl.textContent = fmt(ws.getDuration());
+});
+ws.on('timeupdate', (t) =&gt; {
+timeEl.textContent = fmt(t);
+});
+window.wavePlay = async function(id) {
+const player = window.wavePlayers[id];
+if (!player) return;
+const ctx = player.backend?.ac || player.backend?.audioContext;
+if (ctx &amp;&amp; ctx.state === 'suspended') {
+await ctx.resume();
+}
+if (player.isPlaying()) {
+player.pause();
+} else {
+player.play();
+}
+};
+window.waveZoom = function(id, z) {
+window.wavePlayers[id].zoom(z);
+};
+window.setLoopA = function(id) {
+window.waveLoops[id].A = window.wavePlayers[id].getCurrentTime();
+};
+window.setLoopB = function(id) {
+window.waveLoops[id].B = window.wavePlayers[id].getCurrentTime();
+};
+window.clearLoop = function(id) {
+window.waveLoops[id].A = null;
+window.waveLoops[id].B = null;
+};
+ws.on('audioprocess', () =&gt; {
+const loop = window.waveLoops[waveId];
+if (loop.A !== null &amp;&amp; loop.B !== null &amp;&amp;
+ws.getCurrentTime() &gt;= loop.B) {
+ws.setTime(loop.A);
+}
+});
+ws.on('ready', () =&gt; {
+const duration = ws.getDuration();
+const list = document.getElementById('markers-' + waveId);
+markers.forEach(m =&gt; {
+const marker = document.createElement('div');
+marker.className = `wave-marker ${m.type} conf-${m.confidence || "low"}`;
+marker.style.left = (m.time / duration * 100) + '%';
+marker.title = m.label;
+marker.onclick = () =&gt; ws.setTime(m.time);
+document.getElementById('wave-' + waveId).appendChild(marker);
+const li = document.createElement('li');
+li.innerHTML = `&lt;span&gt;${fmt(m.time)}&lt;/span&gt; [${m.type}/${m.confidence || "low"}] — ${m.label}`;
+li.onclick = () =&gt; ws.setTime(m.time);
+list.appendChild(li);
+window.evpTable.push({
+time: fmt(m.time),
+type: m.type,
+confidence: m.confidence || "low",
+label: m.label,
+player: "Sample 1 – Raw"
+});
+});
+const urlT = new URLSearchParams(window.location.search).get("t");
+if (urlT) ws.setTime(parseTime(urlT));
+});
+if (group) {
+window.waveGroups[group] = window.waveGroups[group] || [];
+window.waveGroups[group].push(ws);
+ws.on('seek', p =&gt; {
+window.waveGroups[group].forEach(w =&gt; {
+if (w !== ws) {
+w.setTime(p * w.getDuration());
+}
+});
+});
+}
+function fmt(s){
+return `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`;
+}
+function parseTime(t){
+const p=t.split(":");
+return (+p[0]*60)+(+p[1]);
+}
+})();
+&lt;/script&gt;
+&lt;div class="interpretation"&gt;
+K: Ärysttikö jotain tuo mittari?&lt;br&gt;
+V: Kyllä. Joo-o&lt;br&gt;
+&lt;/div&gt;
+&lt;/p&gt;</description></item><item><title>Session: 07.02.2026</title><link>https://deadairproject.online/posts/005-07022026/</link><pubDate>Mon, 16 Feb 2026 02:52:05 +0200</pubDate><guid>https://deadairproject.online/posts/005-07022026/</guid><description>&lt;div class="session-summary"&gt;
+&lt;strong&gt;TL;DR — Session Summary&lt;/strong&gt;
+&lt;ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Tässä GhostBox-istunnossa runsaasti vastauksia. Selviä ja johdonmukaisia vastauksia. Paikalla oli mm. Markku, joka toisti nimensä kahdesti. Vastauksissa kommentointiin myöntävästi siihen, että tämä paikka on aktiivinen.&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;&lt;/li&gt;
+&lt;li&gt;In this GhostBox session there were many responses—clear and coherent ones. Among those present was Markku, who repeated his name twice. The responses also confirmed affirmatively that this location is active.&lt;!-- raw HTML omitted --&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/ul&gt;
+&lt;p class="summary-note"&gt;
+This summary describes observed audio events only.
+Interpretation is left to the listener.
+&lt;/p&gt;</description></item><item><title>Session: 06.02.2026</title><link>https://deadairproject.online/posts/004-06022026/</link><pubDate>Fri, 13 Feb 2026 02:52:05 +0200</pubDate><guid>https://deadairproject.online/posts/004-06022026/</guid><description>&lt;div class="session-summary"&gt;
+&lt;strong&gt;TL;DR — Session Summary&lt;/strong&gt;
+&lt;ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Tutkimuksessa oli paikoitellen negatiivinen ja ivallinen sävy. Kysyttäessä tietyn henkilön läsnäoloa koettiin tutkimuksen intensiivinen hetki, kun vastauksen jälkeen kuultiin voimakas kolahdus.&lt;/li&gt;
+&lt;li&gt;At times, the investigation carried a negative and mocking tone. When the presence of a specific person was questioned, the session reached a particularly intense moment as a loud knocking sound was heard immediately after the response.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/ul&gt;
+&lt;p class="summary-note"&gt;
+This summary describes observed audio events only.
+Interpretation is left to the listener.
+&lt;/p&gt;</description></item><item><title>Session: 05.02.2026</title><link>https://deadairproject.online/posts/003-05022026/</link><pubDate>Wed, 11 Feb 2026 15:15:24 +0200</pubDate><guid>https://deadairproject.online/posts/003-05022026/</guid><description>&lt;div class="session-summary"&gt;
+&lt;strong&gt;TL;DR — Session Summary&lt;/strong&gt;
+&lt;ul&gt;
+Short ghost box session. Three particularly clear responses.
+&lt;/ul&gt;
+&lt;p class="summary-note"&gt;
+This summary describes observed audio events only.
+Interpretation is left to the listener.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;h3 id="session-details"&gt;Session details&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Vadelmakuja, Kangaslampi, Jyväskylä&lt;/li&gt;
+&lt;li&gt;Ghostbox P-SB7&lt;/li&gt;
+&lt;li&gt;Method:GhostBox&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Notes:&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Time of investigation: Evening.&lt;!-- raw HTML omitted --&gt;&lt;/li&gt;
+&lt;li&gt;Home environment. Calm situation.&lt;!-- raw HTML omitted --&gt;&lt;/li&gt;
+&lt;li&gt;Equipment used: GhostBox; short session.&lt;!-- raw HTML omitted --&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Atmosphere:&lt;/strong&gt; Calm and peaceful
+&lt;!-- raw HTML omitted --&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="audio"&gt;Audio&lt;/h3&gt;
+&lt;div class="wave-wrapper"&gt;
+&lt;div class="wave-title"&gt;Raw&lt;/div&gt;
+&lt;div class="wave-time"&gt;
+&lt;span id="time-s005-raw"&gt;0:00&lt;/span&gt;
+/
+&lt;span id="duration-s005-raw"&gt;0:00&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="wave-player" id="wave-s005-raw"&gt;&lt;/div&gt;
+&lt;div class="wave-timeline" id="timeline-s005-raw"&gt;&lt;/div&gt;
+&lt;div class="wave-controls"&gt;
+&lt;button onclick="wavePlay('s005-raw')"&gt;▶︎ / ❚❚&lt;/button&gt;
+&lt;button onclick="setLoopA('s005-raw')"&gt;A&lt;/button&gt;
+&lt;button onclick="setLoopB('s005-raw')"&gt;B&lt;/button&gt;
+&lt;button onclick="clearLoop('s005-raw')"&gt;Clear&lt;/button&gt;
+&lt;label style="font-size:0.8em; margin-left:10px;"&gt;
+Zoom
+&lt;input type="range" min="1" max="200" value="1"
+oninput="waveZoom('s005-raw', Number(this.value))"&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;ul class="marker-list" id="markers-s005-raw"&gt;&lt;/ul&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function () {
+window.wavePlayers = window.wavePlayers || {};
+window.waveGroups = window.waveGroups || {};
+window.evpTable = window.evpTable || [];
+const waveId = "s005-raw";
+const group = "s001";
+const markers = [
+{ "time": 4, "label": "clear spoken answer", "type": "response", "confidence": "high" }
+];
+window.waveLoops = window.waveLoops || {};
+window.waveLoops[waveId] = { A: null, B: null };
+const ws = WaveSurfer.create({
+container: '#wave-' + waveId,
+backend: 'MediaElement',
+mediaControls: false,
+waveColor: '#333',
+progressColor: '#bbb',
+cursorColor: '#888',
+height: 90,
+normalize: true,
+plugins: [
+WaveSurfer.Timeline.create({
+container: '#timeline-' + waveId,
+timeInterval: 1,
+primaryLabelInterval: 10,
+secondaryLabelInterval: 5,
+style: {
+fontSize: '11px',
+color: '#9da7b1'
+}
+})
+]
+});
+window.wavePlayers[waveId] = ws;
+ws.load('https:\/\/media.deadairproject.online\/sessions\/session-005\/Etsin.mp3');
+const timeEl = document.getElementById('time-' + waveId);
+const durEl = document.getElementById('duration-' + waveId);
+ws.on('ready', () =&gt; {
+durEl.textContent = fmt(ws.getDuration());
+});
+ws.on('timeupdate', (t) =&gt; {
+timeEl.textContent = fmt(t);
+});
+window.wavePlay = async function(id) {
+const player = window.wavePlayers[id];
+if (!player) return;
+const ctx = player.backend?.ac || player.backend?.audioContext;
+if (ctx &amp;&amp; ctx.state === 'suspended') {
+await ctx.resume();
+}
+if (player.isPlaying()) {
+player.pause();
+} else {
+player.play();
+}
+};
+window.waveZoom = function(id, z) {
+window.wavePlayers[id].zoom(z);
+};
+window.setLoopA = function(id) {
+window.waveLoops[id].A = window.wavePlayers[id].getCurrentTime();
+};
+window.setLoopB = function(id) {
+window.waveLoops[id].B = window.wavePlayers[id].getCurrentTime();
+};
+window.clearLoop = function(id) {
+window.waveLoops[id].A = null;
+window.waveLoops[id].B = null;
+};
+ws.on('audioprocess', () =&gt; {
+const loop = window.waveLoops[waveId];
+if (loop.A !== null &amp;&amp; loop.B !== null &amp;&amp;
+ws.getCurrentTime() &gt;= loop.B) {
+ws.setTime(loop.A);
+}
+});
+ws.on('ready', () =&gt; {
+const duration = ws.getDuration();
+const list = document.getElementById('markers-' + waveId);
+markers.forEach(m =&gt; {
+const marker = document.createElement('div');
+marker.className = `wave-marker ${m.type} conf-${m.confidence || "low"}`;
+marker.style.left = (m.time / duration * 100) + '%';
+marker.title = m.label;
+marker.onclick = () =&gt; ws.setTime(m.time);
+document.getElementById('wave-' + waveId).appendChild(marker);
+const li = document.createElement('li');
+li.innerHTML = `&lt;span&gt;${fmt(m.time)}&lt;/span&gt; [${m.type}/${m.confidence || "low"}] — ${m.label}`;
+li.onclick = () =&gt; ws.setTime(m.time);
+list.appendChild(li);
+window.evpTable.push({
+time: fmt(m.time),
+type: m.type,
+confidence: m.confidence || "low",
+label: m.label,
+player: "Raw"
+});
+});
+const urlT = new URLSearchParams(window.location.search).get("t");
+if (urlT) ws.setTime(parseTime(urlT));
+});
+if (group) {
+window.waveGroups[group] = window.waveGroups[group] || [];
+window.waveGroups[group].push(ws);
+ws.on('seek', p =&gt; {
+window.waveGroups[group].forEach(w =&gt; {
+if (w !== ws) {
+w.setTime(p * w.getDuration());
+}
+});
+});
+}
+function fmt(s){
+return `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`;
+}
+function parseTime(t){
+const p=t.split(":");
+return (+p[0]*60)+(+p[1]);
+}
+})();
+&lt;/script&gt;
+&lt;div class="interpretation"&gt;
+K: Mikä sun nimi on?&lt;br&gt;
+V: Etsin
+&lt;/div&gt;
+&lt;div class="wave-wrapper"&gt;
+&lt;div class="wave-title"&gt;Raw&lt;/div&gt;
+&lt;div class="wave-time"&gt;
+&lt;span id="time-s006-"&gt;0:00&lt;/span&gt;
+/
+&lt;span id="duration-s006-"&gt;0:00&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="wave-player" id="wave-s006-"&gt;&lt;/div&gt;
+&lt;div class="wave-timeline" id="timeline-s006-"&gt;&lt;/div&gt;
+&lt;div class="wave-controls"&gt;
+&lt;button onclick="wavePlay('s006-')"&gt;▶︎ / ❚❚&lt;/button&gt;
+&lt;button onclick="setLoopA('s006-')"&gt;A&lt;/button&gt;
+&lt;button onclick="setLoopB('s006-')"&gt;B&lt;/button&gt;
+&lt;button onclick="clearLoop('s006-')"&gt;Clear&lt;/button&gt;
+&lt;label style="font-size:0.8em; margin-left:10px;"&gt;
+Zoom
+&lt;input type="range" min="1" max="200" value="1"
+oninput="waveZoom('s006-', Number(this.value))"&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;ul class="marker-list" id="markers-s006-"&gt;&lt;/ul&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function () {
+window.wavePlayers = window.wavePlayers || {};
+window.waveGroups = window.waveGroups || {};
+window.evpTable = window.evpTable || [];
+const waveId = "s006-";
+const group = "s002";
+const markers = [
+{ "time": 2, "label": "clear spoken answer", "type": "response", "confidence": "high" }
+{ "time": 4, "label": "clear spoken answer", "type": "response", "confidence": "high" }
+];
+window.waveLoops = window.waveLoops || {};
+window.waveLoops[waveId] = { A: null, B: null };
+const ws = WaveSurfer.create({
+container: '#wave-' + waveId,
+backend: 'MediaElement',
+mediaControls: false,
+waveColor: '#333',
+progressColor: '#bbb',
+cursorColor: '#888',
+height: 90,
+normalize: true,
+plugins: [
+WaveSurfer.Timeline.create({
+container: '#timeline-' + waveId,
+timeInterval: 1,
+primaryLabelInterval: 10,
+secondaryLabelInterval: 5,
+style: {
+fontSize: '11px',
+color: '#9da7b1'
+}
+})
+]
+});
+window.wavePlayers[waveId] = ws;
+ws.load('https:\/\/media.deadairproject.online\/sessions\/session-005\/Tapio.mp3');
+const timeEl = document.getElementById('time-' + waveId);
+const durEl = document.getElementById('duration-' + waveId);
+ws.on('ready', () =&gt; {
+durEl.textContent = fmt(ws.getDuration());
+});
+ws.on('timeupdate', (t) =&gt; {
+timeEl.textContent = fmt(t);
+});
+window.wavePlay = async function(id) {
+const player = window.wavePlayers[id];
+if (!player) return;
+const ctx = player.backend?.ac || player.backend?.audioContext;
+if (ctx &amp;&amp; ctx.state === 'suspended') {
+await ctx.resume();
+}
+if (player.isPlaying()) {
+player.pause();
+} else {
+player.play();
+}
+};
+window.waveZoom = function(id, z) {
+window.wavePlayers[id].zoom(z);
+};
+window.setLoopA = function(id) {
+window.waveLoops[id].A = window.wavePlayers[id].getCurrentTime();
+};
+window.setLoopB = function(id) {
+window.waveLoops[id].B = window.wavePlayers[id].getCurrentTime();
+};
+window.clearLoop = function(id) {
+window.waveLoops[id].A = null;
+window.waveLoops[id].B = null;
+};
+ws.on('audioprocess', () =&gt; {
+const loop = window.waveLoops[waveId];
+if (loop.A !== null &amp;&amp; loop.B !== null &amp;&amp;
+ws.getCurrentTime() &gt;= loop.B) {
+ws.setTime(loop.A);
+}
+});
+ws.on('ready', () =&gt; {
+const duration = ws.getDuration();
+const list = document.getElementById('markers-' + waveId);
+markers.forEach(m =&gt; {
+const marker = document.createElement('div');
+marker.className = `wave-marker ${m.type} conf-${m.confidence || "low"}`;
+marker.style.left = (m.time / duration * 100) + '%';
+marker.title = m.label;
+marker.onclick = () =&gt; ws.setTime(m.time);
+document.getElementById('wave-' + waveId).appendChild(marker);
+const li = document.createElement('li');
+li.innerHTML = `&lt;span&gt;${fmt(m.time)}&lt;/span&gt; [${m.type}/${m.confidence || "low"}] — ${m.label}`;
+li.onclick = () =&gt; ws.setTime(m.time);
+list.appendChild(li);
+window.evpTable.push({
+time: fmt(m.time),
+type: m.type,
+confidence: m.confidence || "low",
+label: m.label,
+player: "Raw"
+});
+});
+const urlT = new URLSearchParams(window.location.search).get("t");
+if (urlT) ws.setTime(parseTime(urlT));
+});
+if (group) {
+window.waveGroups[group] = window.waveGroups[group] || [];
+window.waveGroups[group].push(ws);
+ws.on('seek', p =&gt; {
+window.waveGroups[group].forEach(w =&gt; {
+if (w !== ws) {
+w.setTime(p * w.getDuration());
+}
+});
+});
+}
+function fmt(s){
+return `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`;
+}
+function parseTime(t){
+const p=t.split(":");
+return (+p[0]*60)+(+p[1]);
+}
+})();
+&lt;/script&gt;
+&lt;div class="interpretation"&gt;
+K: Sano sun oma nimi?&lt;br&gt;
+V: Kuvatus&lt;br&gt;
+V: Tapio
+&lt;/div&gt;
+&lt;h3 id="session-report"&gt;Session Report&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Session Atmosphere: The atmosphere during the session was calm.&lt;/li&gt;
+&lt;li&gt;Responses: The investigation produced several clear and intelligent responses&lt;/li&gt;
+&lt;li&gt;Identification: When asked for a name, a clear name was received: &amp;ldquo;Tapio&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Researcher’s Observation: Some responses appear contextually relevant, though further analysis is always recommended.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="submit-evidence-box"&gt;
+&lt;p class="submit-evidence-title"&gt;Feedback ✉️&lt;/p&gt;</description></item><item><title>Session: 15.01.2026</title><link>https://deadairproject.online/posts/002-15012026/</link><pubDate>Tue, 27 Jan 2026 02:52:05 +0200</pubDate><guid>https://deadairproject.online/posts/002-15012026/</guid><description>&lt;div class="session-summary"&gt;
+&lt;strong&gt;TL;DR — Session Summary&lt;/strong&gt;
+&lt;ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Vihamielinen ja negatiivinen ilmapiiri. Useatr vastaukset olivat aggressivisella sävyllä ja ne olivat osoitettu yhdelle naispuoliselle tutkimukseen osallistuneelle.&lt;/li&gt;
+&lt;li&gt;Negative and hostile atmosphere. Several responses carried a clearly aggressive tone, appearing to be directed toward the female participant in the session.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/ul&gt;
+&lt;p class="summary-note"&gt;
+This summary describes observed audio events only.
+Interpretation is left to the listener.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;h3 id="session-details"&gt;Session details&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Location:&lt;/strong&gt;&lt;br&gt;
+Paperitehtaankatu 1, Jyväskylä, Finland&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Device:&lt;/strong&gt;&lt;br&gt;
+SpiritStore - SpiritBox&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Method:&lt;/strong&gt;&lt;br&gt;
+GhostBox&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Atmosphere:&lt;/strong&gt; The atmosphere during the session was particularly charged. Some responses were hostile and even dismissive. A number of these hostile replies appeared to be directed specifically toward one of the female participants.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="audio-sample-i"&gt;Audio Sample I&lt;/h3&gt;
+&lt;p&gt;&lt;div class="wave-wrapper"&gt;
+&lt;div class="wave-title"&gt;Raw&lt;/div&gt;
+&lt;div class="wave-time"&gt;
+&lt;span id="time-s001-raw"&gt;0:00&lt;/span&gt;
+/
+&lt;span id="duration-s001-raw"&gt;0:00&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="wave-player" id="wave-s001-raw"&gt;&lt;/div&gt;
+&lt;div class="wave-timeline" id="timeline-s001-raw"&gt;&lt;/div&gt;
+&lt;div class="wave-controls"&gt;
+&lt;button onclick="wavePlay('s001-raw')"&gt;▶︎ / ❚❚&lt;/button&gt;
+&lt;button onclick="setLoopA('s001-raw')"&gt;A&lt;/button&gt;
+&lt;button onclick="setLoopB('s001-raw')"&gt;B&lt;/button&gt;
+&lt;button onclick="clearLoop('s001-raw')"&gt;Clear&lt;/button&gt;
+&lt;label style="font-size:0.8em; margin-left:10px;"&gt;
+Zoom
+&lt;input type="range" min="1" max="200" value="1"
+oninput="waveZoom('s001-raw', Number(this.value))"&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;ul class="marker-list" id="markers-s001-raw"&gt;&lt;/ul&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function () {
+window.wavePlayers = window.wavePlayers || {};
+window.waveGroups = window.waveGroups || {};
+window.evpTable = window.evpTable || [];
+const waveId = "s001-raw";
+const group = "s001";
+const markers = [{"time":4,"label":"clear spoken answer","type":"response","confidence":"high"}];
+window.waveLoops = window.waveLoops || {};
+window.waveLoops[waveId] = { A: null, B: null };
+const ws = WaveSurfer.create({
+container: '#wave-' + waveId,
+backend: 'MediaElement',
+mediaControls: false,
+waveColor: '#333',
+progressColor: '#bbb',
+cursorColor: '#888',
+height: 90,
+normalize: true,
+plugins: [
+WaveSurfer.Timeline.create({
+container: '#timeline-' + waveId,
+timeInterval: 1,
+primaryLabelInterval: 10,
+secondaryLabelInterval: 5,
+style: {
+fontSize: '11px',
+color: '#9da7b1'
+}
+})
+]
+});
+window.wavePlayers[waveId] = ws;
+ws.load('https:\/\/media.deadairproject.online\/sessions\/session-001\/raw.mp3');
+const timeEl = document.getElementById('time-' + waveId);
+const durEl = document.getElementById('duration-' + waveId);
+ws.on('ready', () =&gt; {
+durEl.textContent = fmt(ws.getDuration());
+});
+ws.on('timeupdate', (t) =&gt; {
+timeEl.textContent = fmt(t);
+});
+window.wavePlay = async function(id) {
+const player = window.wavePlayers[id];
+if (!player) return;
+const ctx = player.backend?.ac || player.backend?.audioContext;
+if (ctx &amp;&amp; ctx.state === 'suspended') {
+await ctx.resume();
+}
+if (player.isPlaying()) {
+player.pause();
+} else {
+player.play();
+}
+};
+window.waveZoom = function(id, z) {
+window.wavePlayers[id].zoom(z);
+};
+window.setLoopA = function(id) {
+window.waveLoops[id].A = window.wavePlayers[id].getCurrentTime();
+};
+window.setLoopB = function(id) {
+window.waveLoops[id].B = window.wavePlayers[id].getCurrentTime();
+};
+window.clearLoop = function(id) {
+window.waveLoops[id].A = null;
+window.waveLoops[id].B = null;
+};
+ws.on('audioprocess', () =&gt; {
+const loop = window.waveLoops[waveId];
+if (loop.A !== null &amp;&amp; loop.B !== null &amp;&amp;
+ws.getCurrentTime() &gt;= loop.B) {
+ws.setTime(loop.A);
+}
+});
+ws.on('ready', () =&gt; {
+const duration = ws.getDuration();
+const list = document.getElementById('markers-' + waveId);
+markers.forEach(m =&gt; {
+const marker = document.createElement('div');
+marker.className = `wave-marker ${m.type} conf-${m.confidence || "low"}`;
+marker.style.left = (m.time / duration * 100) + '%';
+marker.title = m.label;
+marker.onclick = () =&gt; ws.setTime(m.time);
+document.getElementById('wave-' + waveId).appendChild(marker);
+const li = document.createElement('li');
+li.innerHTML = `&lt;span&gt;${fmt(m.time)}&lt;/span&gt; [${m.type}/${m.confidence || "low"}] — ${m.label}`;
+li.onclick = () =&gt; ws.setTime(m.time);
+list.appendChild(li);
+window.evpTable.push({
+time: fmt(m.time),
+type: m.type,
+confidence: m.confidence || "low",
+label: m.label,
+player: "Raw"
+});
+});
+const urlT = new URLSearchParams(window.location.search).get("t");
+if (urlT) ws.setTime(parseTime(urlT));
+});
+if (group) {
+window.waveGroups[group] = window.waveGroups[group] || [];
+window.waveGroups[group].push(ws);
+ws.on('seek', p =&gt; {
+window.waveGroups[group].forEach(w =&gt; {
+if (w !== ws) {
+w.setTime(p * w.getDuration());
+}
+});
+});
+}
+function fmt(s){
+return `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`;
+}
+function parseTime(t){
+const p=t.split(":");
+return (+p[0]*60)+(+p[1]);
+}
+})();
+&lt;/script&gt;
+&lt;div class="interpretation"&gt;
+K: Ootko naisvihaaja? &lt;br&gt;
+V: Oon!&lt;br&gt;
+&lt;/div&gt;
+&lt;/p&gt;</description></item><item><title>Session: 14.01.2026</title><link>https://deadairproject.online/posts/006-14012026/</link><pubDate>Tue, 20 Jan 2026 02:52:05 +0200</pubDate><guid>https://deadairproject.online/posts/006-14012026/</guid><description>&lt;div class="session-summary"&gt;
+&lt;strong&gt;TL;DR — Session Summary&lt;/strong&gt;
+&lt;ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Tutkimuksessa saatiin muutama erinomainen vastaus. Saimme myös vahivstuksen sille, että vastapuolella oli älyllinen entiteetti toteuttamalla yksinkertainen laskenta: 1, 2 johon saimme vastauksen 3. Myös kysyessämme nimeä saimme selkeän nimen ja meitä tervehdittiin.&lt;/li&gt;
+&lt;li&gt;The investigation produced several excellent responses. Evidence of an intelligent presence was suggested when we performed a simple counting test: “1, 2,” and received the reply “3.” When we asked for a name, a clear name was given, and we were also greeted.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/ul&gt;
+&lt;p class="summary-note"&gt;
+This summary describes observed audio events only.
+Interpretation is left to the listener.
+&lt;/p&gt;</description></item><item><title>Dead Air Project — Introduction</title><link>https://deadairproject.online/posts/001-introduction/</link><pubDate>Mon, 19 Jan 2026 00:00:00 +0000</pubDate><guid>https://deadairproject.online/posts/001-introduction/</guid><description>&lt;h2 id="what-is-dead-air-project"&gt;What is Dead Air Project?&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Dead Air Project&lt;/strong&gt; is an archive of ghostbox recordings, EVP sessions, and anomalous audio experiments.&lt;/p&gt;
+&lt;p&gt;The goal is not to prove or claim anything —&lt;br&gt;
+but to &lt;strong&gt;document&lt;/strong&gt;, &lt;strong&gt;archive&lt;/strong&gt;, and &lt;strong&gt;let the listener decide&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;All audio is presented as transparently as possible:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;raw recordings&lt;/li&gt;
+&lt;li&gt;enhanced references (clearly marked)&lt;/li&gt;
+&lt;li&gt;no hidden processing&lt;/li&gt;
+&lt;li&gt;no sensational framing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="methodology"&gt;Methodology&lt;/h2&gt;
+&lt;p&gt;Sessions may include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ghostbox radio sweep&lt;/li&gt;
+&lt;li&gt;controlled silence recordings&lt;/li&gt;
+&lt;li&gt;environmental audio capture&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Each session documents:&lt;/p&gt;</description></item></channel></rss>
